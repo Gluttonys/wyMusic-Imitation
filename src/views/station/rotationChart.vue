@@ -26,7 +26,6 @@
     created() {
       getRotationChartForStation()
         .then(data => {
-          console.log(data)
           this.rotationList = data.data
         })
         .catch(error => {

@@ -112,6 +112,28 @@ function getAllTypeForStation() {
   })
 }
 
+function getToplistPay(options) {
+  /**
+   * 获取电台付费精品
+   */
+  return request({
+    url: "/dj/paygift",
+    params: {
+      limit: options.size
+    }
+  })
+
+}
+
+
+function getDjRecommend() {
+  /**
+   * 获取电台个性推荐
+   */
+  return request({
+    url: "/dj/recommend"
+  })
+}
 
 
 export {
@@ -128,5 +150,7 @@ export {
   getAllSongSheet,
   // 主播电台
   getRotationChartForStation,
-  getAllTypeForStation
+  getAllTypeForStation,
+  getToplistPay,
+  getDjRecommend
 }

@@ -45,7 +45,6 @@
     created() {
       getAllTypeForStation()
         .then(data => {
-          console.log(data)
           this.categories = data.categories
         })
         .catch(error => {

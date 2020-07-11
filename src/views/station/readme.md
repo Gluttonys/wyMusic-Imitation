@@ -2,6 +2,8 @@
 
 - rotationChart : 最上面的哪个轮播图
 
+- listen : 付费电台
 
+- djRecommend : 个性推荐电台
 
 
