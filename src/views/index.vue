@@ -16,8 +16,16 @@
         <station-page></station-page>
       </el-tab-pane>
 
-      <el-tab-pane label="排行榜" name="paihangbang">排行榜</el-tab-pane>
-      <el-tab-pane label="歌手" name="songer">歌手</el-tab-pane>
+       <!-- 排行榜 -->
+      <el-tab-pane label="排行榜" name="paihangbang">
+        <top-list-page></top-list-page>
+      </el-tab-pane>
+
+      <!-- 歌手 -->
+      <el-tab-pane label="歌手" name="songer">
+        <singer></singer>
+      </el-tab-pane>
+
       <el-tab-pane label="最新音乐" name="zuixin">最新音乐</el-tab-pane>
     </el-tabs>
 
@@ -32,7 +40,10 @@
   import songSheet from './songSheet'
   // 电台
   import stationPage from './stationPage'
-
+  // 排行榜
+  import topListPage from './topListPage'
+  // 歌手页面
+  import singer from './singer'
 
   export default {
     name: "index",
@@ -45,7 +56,9 @@
     components: {
       personalizedPage,
       songSheet,
-      stationPage
+      stationPage,
+      topListPage,
+      singer
     },
     methods: {
       // 单机导航栏触发的事件

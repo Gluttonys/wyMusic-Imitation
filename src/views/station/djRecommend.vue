@@ -28,7 +28,6 @@
     created() {
       getDjRecommend()
         .then(data => {
-          console.log(data)
           this.recommendList = data.djRadios.slice(0, 6)
         })
         .catch(error => {

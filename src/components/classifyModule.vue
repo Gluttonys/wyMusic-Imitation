@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <p class="title">{{title}}</p>
+    <p class="title" v-if="!noTitle">{{title}}</p>
     <p class="more" v-if="!noMore">更多></p>
 
     <div class="split"></div>
@@ -24,6 +24,10 @@
         default: ""
       },
       noMore: {
+        type: Boolean,
+        default: false
+      },
+      noTitle: {
         type: Boolean,
         default: false
       },

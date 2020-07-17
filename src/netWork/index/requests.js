@@ -125,7 +125,6 @@ function getToplistPay(options) {
 
 }
 
-
 function getDjRecommend() {
   /**
    * 获取电台个性推荐
@@ -135,6 +134,37 @@ function getDjRecommend() {
   })
 }
 
+// =====================排行榜=======================
+
+function getToplist() {
+  /**
+   * 获取排行榜信息
+   */
+  return request({
+    url: "/toplist"
+  })
+}
+
+function getRankById(options) {
+  return request({
+    url: "/playlist/detail",
+    params: {
+      id: options.id
+    }
+  })
+}
+
+
+// =====================歌手========================、
+function getTopSingers(options) {
+  return request({
+    url: "/top/artists",
+    params: {
+      offset: options.offset || 0,
+      limit: options.limit || 30
+    }
+  })
+}
 
 export {
   // 首页
@@ -152,5 +182,12 @@ export {
   getRotationChartForStation,
   getAllTypeForStation,
   getToplistPay,
-  getDjRecommend
+  getDjRecommend,
+  // 排行榜
+  getToplist,
+  getRankById,
+
+  // 全部歌手
+  getTopSingers
+
 }
