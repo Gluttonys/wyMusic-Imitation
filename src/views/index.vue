@@ -4,29 +4,31 @@
     <!-- 顶部导航栏 -->
     <el-tabs v-model="activeName" @tab-click="handleClick">
 
-      <el-tab-pane label="个性推荐" name="tuijian">
+      <el-tab-pane label="个性推荐" name="tuijian" :lazy="true">
         <personalized-page></personalized-page>
       </el-tab-pane>
 
-      <el-tab-pane label="歌单" name="playlist">
+      <el-tab-pane label="歌单" name="playlist" :lazy="true">
         <song-sheet></song-sheet>
       </el-tab-pane>
 
-      <el-tab-pane label="主播电台" name="diantai">
+      <el-tab-pane label="主播电台" name="diantai" :lazy="true">
         <station-page></station-page>
       </el-tab-pane>
 
        <!-- 排行榜 -->
-      <el-tab-pane label="排行榜" name="paihangbang">
+      <el-tab-pane label="排行榜" name="paihangbang" :lazy="true">
         <top-list-page></top-list-page>
       </el-tab-pane>
 
       <!-- 歌手 -->
-      <el-tab-pane label="歌手" name="songer">
+      <el-tab-pane label="歌手" name="songer" :lazy="true">
         <singer></singer>
       </el-tab-pane>
 
-      <el-tab-pane label="最新音乐" name="zuixin">最新音乐</el-tab-pane>
+      <el-tab-pane label="最新音乐" name="zuixin" :lazy="true">
+        <recent-music-page></recent-music-page>
+      </el-tab-pane>
     </el-tabs>
 
   </div>
@@ -44,13 +46,16 @@
   import topListPage from './topListPage'
   // 歌手页面
   import singer from './singer'
+  // 最新音乐
+  import recentMusicPage from './recentMusicPage'
+
 
   export default {
     name: "index",
     data() {
       return {
         // 当前活动tab
-        activeName: "tuijian"
+        activeName: this.$store.state.currentTab
       }
     },
     components: {
@@ -58,11 +63,13 @@
       songSheet,
       stationPage,
       topListPage,
-      singer
+      singer,
+      recentMusicPage
     },
     methods: {
       // 单机导航栏触发的事件
       handleClick(tab, event) {
+        this.$store.commit("setCurrentTab", tab.$options.propsData.name)
       }
     }
   }

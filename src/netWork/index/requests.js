@@ -155,7 +155,7 @@ function getRankById(options) {
 }
 
 
-// =====================歌手========================、
+// =====================歌手========================
 function getTopSingers(options) {
   return request({
     url: "/top/artists",
@@ -165,6 +165,18 @@ function getTopSingers(options) {
     }
   })
 }
+
+// ====================最新音乐====================
+function getRecentMusic(options) {
+  return request({
+    url: "/top/song",
+    params: {
+      type: options.type
+    }
+  })
+}
+
+
 
 export {
   // 首页
@@ -186,8 +198,8 @@ export {
   // 排行榜
   getToplist,
   getRankById,
-
   // 全部歌手
-  getTopSingers
-
+  getTopSingers,
+  // 最新音乐
+  getRecentMusic
 }

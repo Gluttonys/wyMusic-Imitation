@@ -45,3 +45,27 @@ export let authorFilter = {
   ]
 }
 
+export let searchType = {
+  /**
+   *     1: 单曲
+   *     10: 专辑
+   *     100: 歌手
+   *     1000: 歌单
+   *     1002: 用户
+   *     1004: MV
+   *     1006: 歌词
+   *     1009: 电台
+   *     1014: 视频
+   *     1018:综合 （默认）
+   */
+  song: 1,
+  playList: 1000,
+  video: 1014,
+  sim_query: 1009,
+  mlog: 1004,
+  talk: 1006,
+  artist: 100,
+  album: 10,
+  user: 1002,
+  all: 1018
+}

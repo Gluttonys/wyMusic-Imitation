@@ -6,20 +6,24 @@
       <span>网易云音乐</span>
     </div>
     <!-- 搜索框区域 -->
-    <div class="search-input">
+    <search></search>
 
-      <div class="back">
-        <span class="iconfont icon-103fangxiang_xiangzuo"></span>
-      </div>
-      <div class="go">
-        <span class="iconfont icon-101fangxiang_xiangyou"></span>
-      </div>
+    <!--<div class="search-input">-->
 
-      <div class="search-input__wrapper">
-        <input type="text" placeholder="搜索音乐、视频、歌词、电台">
-        <span class="iconfont icon-sousuo"></span>
-      </div>
-    </div>
+      <!--<div class="back">-->
+        <!--<span class="iconfont icon-103fangxiang_xiangzuo"></span>-->
+      <!--</div>-->
+
+      <!--<div class="go">-->
+        <!--<span class="iconfont icon-101fangxiang_xiangyou"></span>-->
+      <!--</div>-->
+
+      <!--<div class="search-input__wrapper">-->
+        <!--<input type="text" placeholder="搜索音乐、视频、歌词、电台">-->
+        <!--<span class="iconfont icon-sousuo"></span>-->
+      <!--</div>-->
+    <!--</div>-->
+
     <!-- 工具栏 个人信息头像 -->
     <div class="tools">
 
@@ -79,12 +83,17 @@
 
 <script>
 
+  import search from './navigation/search/search'
+
   import {informLoged} from "../globalBus/events"
 
   import {getUserLogin} from "../netWork/navigationBar/requests"
 
   export default {
     name: "navigationBar",
+    components: {
+      search
+    },
     data() {
       return {
         // 模态框的显示控制标志
@@ -171,42 +180,6 @@
         margin-left: 16px;
         letter-spacing: 2px;
         font-weight: 200;
-      }
-    }
-
-    .search-input {
-      place-self: center start;
-
-      .back,
-      .go {
-        display: inline-block;
-        padding: 4px 8px;
-        border: 1px solid #a22225;
-        color: #b3b3b3;
-        border-radius: 2px;
-        cursor: pointer;
-      }
-
-      .search-input__wrapper {
-        display: inline-block;
-        background-color: #a22225;
-        padding: 6px 16px;
-        border-radius: 20px;
-        margin-left: 16px;
-
-        input {
-          outline: none;
-          border: none;
-          background: none;
-          color: white;
-          font-size: 14px;
-          width: 240px;
-        }
-
-        span {
-          margin-left: 16px;
-          cursor: pointer;
-        }
       }
     }
 

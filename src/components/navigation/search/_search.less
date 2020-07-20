@@ -1,0 +1,108 @@
+.search-input {
+  place-self: center start;
+
+  .back,
+  .go {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid #a22225;
+    color: #b3b3b3;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .search-input__wrapper {
+    display: inline-block;
+    background-color: #a22225;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-left: 16px;
+
+    input {
+      outline: none;
+      border: none;
+      background: none;
+      color: white;
+      font-size: 14px;
+      width: 240px;
+    }
+
+    span {
+      margin-left: 16px;
+      cursor: pointer;
+    }
+  }
+
+
+  .search-inner {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+
+    color: #454545 !important;
+
+    p {
+      margin: 1em 0;
+      padding: 0;
+    }
+
+    /* 左边的一列 */
+    .real-input-block {
+      padding: 1em;
+      input {
+        width: 30vw;
+        height: 30px;
+        outline: none;
+        background: none;
+        border: none;
+        border-left: 5px solid #b3330d;
+        border-bottom: 1px solid #b3330d;
+      }
+
+      .hot-search {
+        color: #555555;
+
+        .item {
+          margin: 0.5em 1em;
+          font-size: 12px;
+          cursor: pointer;
+
+          &:hover {
+            color: #b3330d;
+          }
+
+        }
+
+      }
+
+      .history-tags {
+        margin-top: 1em;
+        max-height: 12vh;
+        overflow: auto;
+
+        .el-tag {
+          margin: 0.5em;
+        }
+
+      }
+
+    }
+
+    /* 搜索结果 */
+    .search-result {
+
+
+    }
+
+    /* 热门音乐 */
+    .hot-list {
+
+
+    }
+
+  }
+
+
+}
+

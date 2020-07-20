@@ -33,7 +33,6 @@
     created() {
       getTopSingers({})
         .then(data => {
-          console.log("歌手列表", data)
           this.allSinger = data.artists
         })
         .catch(error => {

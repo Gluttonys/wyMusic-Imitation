@@ -4,11 +4,11 @@ import VueRouter from "vue-router"
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
-    path: '/',
-    name: 'Index',
-    component: () => import('../views/index')
+    path: "/",
+    name: "Index",
+    component: () => import("../views/index")
   }
 ]
 

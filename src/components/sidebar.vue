@@ -6,64 +6,65 @@
         <div class="title">
           <span>推荐</span>
         </div>
-        <ul>
-          <li>
-            <span class="iconfont icon-yinle1"></span>
-            <span>发现音乐</span>
-          </li>
-          <li>
-            <span class="iconfont icon-vynil"></span>
-            <span>私人FM</span>
-          </li>
-          <li>
-            <span class="iconfont icon-shipin"></span>
-            <span>LOOK直播</span>
-          </li>
-          <li>
-            <span class="iconfont icon-02"></span>
-            <span>视频</span>
-          </li>
-          <li>
-            <span class="iconfont icon-pengyou"></span>
-            <span>朋友</span>
-          </li>
-        </ul>
+        <div class="item hit">
+          <span class="iconfont icon-yinle1"></span>
+          <span>发现音乐</span>
+        </div>
+
+        <div class="item">
+          <span class="iconfont icon-vynil"></span>
+          <span>私人FM</span>
+        </div>
+
+        <div class="item">
+          <span class="iconfont icon-shipin"></span>
+          <span>LOOK直播</span>
+        </div>
+
+        <div class="item">
+          <span class="iconfont icon-02"></span>
+          <span>视频</span>
+        </div>
+
+        <div class="item">
+          <span class="iconfont icon-pengyou"></span>
+          <span>朋友</span>
+        </div>
       </div>
 
       <div class="block">
         <div class="title">
           <span>我的音乐</span>
         </div>
-        <ul>
-          <li>
-            <span class="iconfont icon-erji"></span>
-            <span>本地音乐</span>
-          </li>
-          <li>
-            <span class="iconfont icon-xiazai"></span>
-            <span>下载管理</span>
-          </li>
-          <li>
-            <span class="iconfont icon-yun"></span>
-            <span>我的音乐云盘</span>
-          </li>
-          <li>
-            <span class="iconfont icon-shoucangjia"></span>
-            <span>我的收藏夹</span>
-          </li>
-        </ul>
+
+        <div class="item">
+          <span class="iconfont icon-erji"></span>
+          <span>本地音乐</span>
+        </div>
+        <div class="item">
+          <span class="iconfont icon-xiazai"></span>
+          <span>下载管理</span>
+        </div>
+        <div class="item">
+          <span class="iconfont icon-yun"></span>
+          <span>我的音乐云盘</span>
+        </div>
+        <div class="item">
+          <span class="iconfont icon-shoucangjia"></span>
+          <span>我的收藏夹</span>
+        </div>
+
       </div>
 
       <div class="block">
         <div class="title">
           <span>创建的歌单</span>
         </div>
-        <ul>
-          <li v-for="list of myPlayList" :key="list.id">
+          <div class="item" v-for="list of myPlayList" :key="list.id">
             <span class="iconfont icon-yinleliebiao"></span>
             <span>{{list.name}}</span>
-          </li>
-        </ul>
+          </div>
+
       </div>
 
       <!-- 收藏的歌单 -->
@@ -71,14 +72,12 @@
         <div class="title">
           <span>收藏的歌单</span>
         </div>
-        <ul>
 
-          <li v-for="list of collectPlayList" :key="list.id">
+          <div class="item" v-for="list of collectPlayList" :key="list.id">
             <span class="iconfont icon-xin"></span>
             <span>{{list.name}}</span>
-          </li>
+          </div>
 
-        </ul>
       </div>
     </div>
 
@@ -147,44 +146,37 @@
       overflow: auto;
 
       .block {
-        margin: 1em 0 1.5em 1.5em;
+
         .title {
           color: #6a6a6a;
+          padding: 1em;
         }
 
-        ul {
-          list-style: none;
-          margin: 10px 0 0;
-          padding: 0 10px;
+        .item {
+          color: #6a6a6a;
+          padding-left: 2.5em;
+          cursor: pointer;
+          line-height: 2em;
 
-          li {
-            line-height: 2em;
-            cursor: pointer;
-            color: #6a6a6a;
-            transition: 0.3s;
-
-            span.iconfont {
-              font-size: 1.3em;
-              margin-right: 0.5em;
-            }
-
-            span:last-child {
-              line-height: 1.3em;
-              vertical-align: center;
-            }
+          span.iconfont {
+            font-size: 1.3em;
+            margin-right: 0.5em;
           }
 
-          li:hover {
-            color: #282828;
-            transition: 0.3s;
+          span:last-child {
+            line-height: 1.3em;
+            vertical-align: center;
           }
-
         }
+
+        .hit {
+          background-color: #b3330d10;
+          border-left: 5px solid #b3330d;
+        }
+
 
       }
     }
-
-
 
 
   }

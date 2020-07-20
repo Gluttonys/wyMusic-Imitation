@@ -8,7 +8,11 @@ export default new Vuex.Store({
     // 用户id
     uid: "",
     // 用户名
-    uname: ""
+    uname: "",
+    // 当前tabbar
+    currentTab: "tuijian",
+    // tabBar 列表
+    tabBar: ["tuijian", "playlist", "diantai", "paihangbang", "songer", "zuixin"]
   },
   getters: {},
   mutations: {
@@ -17,6 +21,9 @@ export default new Vuex.Store({
     },
     setUname(state, name) {
       state.uname = name
+    },
+    setCurrentTab(state, newTab) {
+      state.currentTab = newTab
     }
   },
   actions: {},
