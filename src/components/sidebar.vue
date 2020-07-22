@@ -64,7 +64,6 @@
             <span class="iconfont icon-yinleliebiao"></span>
             <span>{{list.name}}</span>
           </div>
-
       </div>
 
       <!-- 收藏的歌单 -->
@@ -170,8 +169,8 @@
         }
 
         .hit {
-          background-color: #b3330d10;
-          border-left: 5px solid #b3330d;
+          background-color: #b3330d20;
+          /*border-left: 5px solid #b3330d;*/
         }
 
 

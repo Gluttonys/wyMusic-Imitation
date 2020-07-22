@@ -24,34 +24,56 @@
       <div class="search-inner">
 
         <div class="real-input-block">
-          <input type="text" v-model="inputWords" :placeholder="defaultPlAceHolderObj.showKeyword"
-                 @keydown.enter="submit(inputWords)">
-          <p>热门搜索</p>
+          <input type="text" v-model="inputWords"
+                 :placeholder="defaultPlAceHolderObj.showKeyword"
+                 @input="submit(inputWords)">
+          <h4>热门搜索</h4>
           <div class="hot-search">
             <span class="item" v-for="(hot, index) of hots" :key="index">
               {{hot.first}}
             </span>
           </div>
-          <p>历史记录</p>
+          <h4>历史记录</h4>
           <div class="history-tags">
             <el-tag type="info" closable v-for="his in localStorageObj" :key="his">
               {{his}}
             </el-tag>
           </div>
-
-
         </div>
 
-        <div class="search-result">
-          <p>搜索结果</p>
-        </div>
+        <div class="result">
+          <h4 class="search-text" v-show="inputWords">
+            <p>搜索<span style="color: #b3330d;">"{{inputWords}}"</span>的相关结果</p>
+          </h4>
+          <div class="detail" v-show="inputWords">
 
-        <div class="hot-list">
-          <p>热搜榜</p>
+            <el-divider content-position="left">单曲</el-divider>
+            <div class="songs-strip" v-if="searchResult">
+              <strip v-for="song of searchResult.song.songs">
+                <div class="strip-inner">
+                  <img :src="song.al.picUrl" alt="">
+                  <p class="song-name">{{song.name}}</p>
+                  <p class="author-name">{{song.ar[0].name}}</p>
+                </div>
+              </strip>
+            </div>
+
+            <el-divider content-position="left">专辑</el-divider>
+            <div class="albums-strip" v-if="searchResult">
+              <strip v-for="album of searchResult.album.albums">
+
+                <div class="strip-inner">
+                  <img :src="album.blurPicUrl" alt="">
+                  <p class="song-name">{{album.name}}</p>
+                  <p class="author-name">{{album.artist.name}}</p>
+                </div>
+
+              </strip>
+            </div>
+          </div>
         </div>
 
       </div>
-
     </el-drawer>
 
   </div>
@@ -68,9 +90,15 @@
   // 搜索类型数据
   import {searchType} from "@/localData"
 
+  // 导入条形组件
+  import strip from "@/components/strip"
+
   export default {
     name: "search",
     props: {},
+    components: {
+      strip
+    },
     data() {
       return {
         // 控制抽屉开启的标志
@@ -82,7 +110,10 @@
         // 默认的搜索框搜索内容，也就是 placeHolder
         defaultPlAceHolderObj: {},
         // 搜索框数据绑定的元素
-        inputWords: ""
+        inputWords: "",
+        // 搜索结果对象
+        searchResult: null,
+
       }
     },
     methods: {
@@ -98,7 +129,7 @@
             type: searchType.all
           })
             .then(data => {
-              console.log(data)
+              this.searchResult = data.result
             })
             .catch(error => {
               this.$message.error("获取搜索结果失败， 请打开控制台查看错误日志")

@@ -3,33 +3,24 @@
     <!-- 上一首 暂停开始 下一首 -->
     <div class="control">
       <span class="iconfont icon-xiangzuoshouqi"></span>
-      <span class="iconfont" :class="getIcon" @click="togglePlay"></span>
+      <span class="iconfont" :class="iconButton" @click="togglePlay"></span>
       <span class="iconfont icon-xiangyouzhankai"></span>
     </div>
 
     <!-- 进度条 -->
     <div class="progress-bar">
       <span class="time">{{currentTime}}</span>
-      <el-progress :percentage="percent"
-                   :show-text="false"
-                   color="#b3330d"
-                   :stroke-width="10">
-      </el-progress>
+      <el-slider v-model="percent" :debounce="300" :show-tooltip="false" @change="percentGo"></el-slider>
       <span class="time">{{allTime}}</span>
     </div>
 
     <!-- 音量 -->
     <div class="volume">
       <span class="iconfont icon-shengyin"></span>
-      <el-progress :percentage="20"
-                   :show-text="false"
-                   color="#b3330d"
-                   :stroke-width="10">
-      </el-progress>
+      <el-slider v-model="percent" :debounce="300" :show-tooltip="false"></el-slider>
     </div>
 
     <!-- 隐藏音乐 Audio -->
-
     <audio controls ref="player" :src="musicUrl" class="aduio"></audio>
 
     <!-- 工具项 -->
@@ -69,7 +60,8 @@
         // 音乐的状态 是正在播放还是在暂停
         isStart: false,
         startIcon: "icon-zanting_huaban",
-        stopIcon: "icon-101fangxiang_xiangyou"
+        stopIcon: "icon-101fangxiang_xiangyou",
+        iconButton: "icon-101fangxiang_xiangyou"
       }
     },
     created() {
@@ -84,63 +76,63 @@
     },
     methods: {
       togglePlay() {
-        this.$nextTick(() => {
 
-          if (this.isStart) {
-            this.$refs.player.pause()
-            this.isStart = false
-          } else {
-            this.$refs.player.play()
-              .then(_ => {
-                // 更改音乐的状态
-                this.isStart = true
-                this.allTime = formatTime(this.$refs.player.duration)
-
-                let that = this
-                this.inter = setInterval(() => {
-                  that.currentTime = formatTime(that.$refs.player.currentTime)
-                  that.percent = Math.ceil((that.$refs.player.currentTime / that.$refs.player.duration) * 100)
-                  if (this.$refs.player.currentTime >= this.$refs.player.duration) {
-                    clearInterval(this.inter)
-                  }
-                }, 1000)
-              })
-              .catch(error => {
-                this.$message.error("获取歌曲失败！！请重新尝试点击获取")
-              })
-          }
-
-        })
-
+        if (this.isStart) {
+          this.$refs.player.pause()
+          this.isStart = false
+        } else {
+          this.$refs.player.play()
+            .then(_ => {
+              this.controller()
+              this.$message.success("开始播放音乐~")
+            })
+            .catch(_ => {
+              this.$message.error("获取歌曲失败！！请重新尝试点击获取")
+            })
+        }
       },
+
       handleMusicUrl(data) {
-        // 获取到 音频文件
+        /**
+         * 首页自动选择热搜第一的歌曲 && 通过别处点击的来的播放的音乐
+         */
         this.musicUrl = data.data[0].url
-
         this.$nextTick(() => {
-          this.$refs.player.play().then(_ => {
-            this.isStart = true
-            this.allTime = formatTime(this.$refs.player.duration)
-
-            let that = this
-            this.inter = setInterval(() => {
-              that.currentTime = formatTime(that.$refs.player.currentTime)
-              that.percent = Math.ceil((that.$refs.player.currentTime / that.$refs.player.duration) * 100)
-              if (this.$refs.player.currentTime >= this.$refs.player.duration) {
-                clearInterval(this.inter)
-              }
-            }, 1000)
-
-          }).catch(error => {
-            this.$message.error("获取歌曲失败！！请重新尝试点击获取")
-          })
+          this.$refs.player.play()
+            .then(_ => {
+              this.controller()
+            })
+            .catch(_ => {
+              this.$message.error("获取歌曲失败！！请重新尝试点击获取")
+            })
         })
-
       },
+
+      controller() {
+        this.isStart = true
+        this.allTime = formatTime(this.$refs.player.duration)
+        this.inter = setInterval(() => {
+          this.currentTime = formatTime(this.$refs.player.currentTime)
+          this.percent = Math.ceil((this.$refs.player.currentTime / this.$refs.player.duration) * 100)
+          if (this.percent === 100) clearInterval(this.inter)
+        }, 1000)
+      },
+
+      percentGo(to) {
+        /**
+         * 滑动滑块  移动至指定的音乐时间
+         */
+        if (this.$refs.player.readyState === 4) {
+          this.$refs.player.currentTime = Math.ceil(this.$refs.player.duration * to * 0.01)
+        }
+      }
     },
-    computed: {
-      getIcon() {
-        return this.isStart ? this.startIcon : this.stopIcon
+    watch: {
+      percent(newValue, _) {
+        this.iconButton = newValue === 100 ? this.stopIcon : this.startIcon
+      },
+      isStart(newValue, _) {
+        this.iconButton = newValue ? this.startIcon : this.stopIcon
       }
     }
   }
@@ -180,14 +172,17 @@
     .progress-bar {
       font-weight: 200;
       place-self: center;
+      display: grid;
+      grid-template-columns: 100px 1fr 100px;
 
       .time {
-        margin: 0 16px;
+        justify-self: center;
+        align-self: center;
       }
 
-      .el-progress {
-        display: inline-block;
+      .el-slider {
         width: 700px;
+
       }
     }
 
@@ -203,16 +198,18 @@
     .volume {
 
       place-self: center;
+      display: grid;
+      grid-template-columns: 50px 1fr;
 
       span {
-        margin-right: 16px;
+        justify-self: center;
+        align-self: center;
+        /*margin-right: 16px;*/
         font-size: 22px;
       }
 
-      .el-progress {
-        display: inline-block;
+      .el-slider {
         width: 150px;
-        transform: translateY(-4px);
       }
 
     }
@@ -232,6 +229,29 @@
 
     }
 
+    /* 修改进度条的默认样式 */
+
+    /deep/ .el-slider {
+
+      .el-slider__runway {
+        .el-slider__bar {
+          background-color: #b3330d;
+        }
+
+        .el-slider__button-wrapper {
+
+          .el-slider__button {
+            border: 2px solid #b3330d;
+            width: 12px;
+            height: 12px;
+          }
+
+        }
+
+      }
+
+
+    }
   }
 
 </style>

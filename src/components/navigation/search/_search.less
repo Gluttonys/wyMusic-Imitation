@@ -37,9 +37,10 @@
   .search-inner {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-
+    padding: 0 3em;
+    //background-color: #b3330d10;
     color: #454545 !important;
 
     p {
@@ -48,10 +49,13 @@
     }
 
     /* 左边的一列 */
+
     .real-input-block {
       padding: 1em;
+
       input {
-        width: 30vw;
+        padding-left: 1em;
+        width: 45vw;
         height: 30px;
         outline: none;
         background: none;
@@ -78,7 +82,7 @@
 
       .history-tags {
         margin-top: 1em;
-        max-height: 12vh;
+        max-height: 8vh;
         overflow: auto;
 
         .el-tag {
@@ -90,16 +94,81 @@
     }
 
     /* 搜索结果 */
-    .search-result {
 
+    .result {
+
+      .detail {
+        max-height: 28vh;
+        overflow-y: scroll;
+
+
+        .el-divider {
+          background-color: #b3330d;
+
+          .el-divider__text {
+            color: #b3330d;
+            font-size: 16px;
+          }
+        }
+
+        .el-divider--horizontal {
+          width: 80%;
+        }
+
+        .strip {
+          width: 98%;
+          font-weight: 100;
+
+          .strip-inner {
+            display: grid;
+            grid-template-columns: 70px 1fr 100px;
+
+            img {
+              justify-self: center;
+              align-self: center;
+              height: 50px;
+              width: 50px;
+            }
+
+            .song-name,
+            .album-name {
+              margin-left: 1em;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .song-name {
+
+            }
+
+            .album-name {
+
+            }
+
+            .author-name {
+              font-size: 12px;
+              color: grey;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              line-height: 35px;
+            }
+
+          }
+
+
+        }
+
+      }
 
     }
 
     /* 热门音乐 */
-    .hot-list {
-
-
-    }
+    //.hot-list {
+    //
+    //
+    //}
 
   }
 
