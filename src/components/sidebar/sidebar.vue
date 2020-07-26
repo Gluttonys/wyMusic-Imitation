@@ -88,10 +88,10 @@
 <script>
 
   // 网络请求
-  import {getPlayList} from "../netWork/sidebar/requests"
+  import {getPlayList} from "../../netWork/sidebar/requests"
 
-  import eventBus from "../globalBus/eventBus.js"
-  import SongBlock from "./song-block"
+  import eventBus from "../../globalBus/eventBus.js"
+  import SongBlock from "../songblock/song-block"
 
   export default {
     name: "sidebar",

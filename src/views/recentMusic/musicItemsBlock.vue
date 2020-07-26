@@ -37,7 +37,7 @@
 
 <script>
 
-  import strip from "../../components/strip"
+  import strip from "../../components/public/strip"
 
   import {getRecentMusic} from "../../netWork/index/requests"
 

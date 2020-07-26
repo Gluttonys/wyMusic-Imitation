@@ -9,7 +9,7 @@
 
 <script>
 
-  import classifyModule from '../../components/classifyModule'
+  import classifyModule from '../../components/public/classifyModule'
   import rankBlock from './rankBlock'
 
   import {getToplist} from "../../netWork/index/requests"

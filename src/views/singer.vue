@@ -14,7 +14,7 @@
 <script>
 
   // 过滤器组件
-  import filters from "./singer/filters"
+  import filters from "../components/public/filters"
   // 过滤类型数据
   import {authorFilter} from '../localData'
 

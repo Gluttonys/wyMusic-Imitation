@@ -20,12 +20,12 @@
 
 <script>
 
-  import classifyModule from "@/components/classifyModule"
-  import block from "@/components/block"
+  import classifyModule from "../../components/public/classifyModule"
+  import block from "../../components/public/block"
 
   import {getRecommendMV} from "../../netWork/index/requests"
 
-  import {formatBigNumber} from "@/tools/tools"
+  import {formatBigNumber} from "../../tools/tools"
 
   export default {
     name: "recommendedMV",

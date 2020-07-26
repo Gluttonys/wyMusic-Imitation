@@ -10,18 +10,18 @@
 
     <!--<div class="search-input">-->
 
-      <!--<div class="back">-->
-        <!--<span class="iconfont icon-103fangxiang_xiangzuo"></span>-->
-      <!--</div>-->
+    <!--<div class="back">-->
+    <!--<span class="iconfont icon-103fangxiang_xiangzuo"></span>-->
+    <!--</div>-->
 
-      <!--<div class="go">-->
-        <!--<span class="iconfont icon-101fangxiang_xiangyou"></span>-->
-      <!--</div>-->
+    <!--<div class="go">-->
+    <!--<span class="iconfont icon-101fangxiang_xiangyou"></span>-->
+    <!--</div>-->
 
-      <!--<div class="search-input__wrapper">-->
-        <!--<input type="text" placeholder="搜索音乐、视频、歌词、电台">-->
-        <!--<span class="iconfont icon-sousuo"></span>-->
-      <!--</div>-->
+    <!--<div class="search-input__wrapper">-->
+    <!--<input type="text" placeholder="搜索音乐、视频、歌词、电台">-->
+    <!--<span class="iconfont icon-sousuo"></span>-->
+    <!--</div>-->
     <!--</div>-->
 
     <!-- 工具栏 个人信息头像 -->
@@ -83,11 +83,11 @@
 
 <script>
 
-  import search from './navigation/search/search'
+  import search from "./search/search"
 
-  import {informLoged} from "../globalBus/events"
+  import {informLoged} from "../../globalBus/events"
 
-  import {getUserLogin} from "../netWork/navigationBar/requests"
+  import {getUserLogin} from "../../netWork/navigationBar/requests"
 
   export default {
     name: "navigationBar",
@@ -148,7 +148,7 @@
               informLoged()
             }
           }
-        ).catch(reason =>{
+        ).catch(reason => {
           this.$message.error("登录失败， 请打开控制台查看错误信息")
           console.error(reason)
         }).finally(() => this.loginForm = false)
@@ -156,11 +156,13 @@
     }
   }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
+  @import "../../../public/scss/main";
+
   nav {
     height: 100%;
     width: 100%;
-    background-color: #b3330d;
+    background-color: $color-main;
     padding: 0 25px;
     box-sizing: border-box;
     color: white;
@@ -216,11 +218,10 @@
         margin-right: 16px;
       }
 
-
     }
 
     .el-dialog__wrapper {
-      z-index: 99999!important;
+      z-index: 99999 !important;
     }
 
     .input {

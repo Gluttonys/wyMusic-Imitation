@@ -82,16 +82,16 @@
 <script>
 
   // 工具方法， 获取， 设置， 删除 指定 localStorage
-  import {getLocalStorageObj, setHistoryForWY, delHistoryForXY} from "@/tools/tools"
+  import {getLocalStorageObj, setHistoryForWY, delHistoryForXY} from "../../../tools/tools"
 
   // 搜索的网路数据请求
-  import {getHotSearch, getDefaultKeyWord, getResult} from "@/netWork/navigationBar/requests"
+  import {getHotSearch, getDefaultKeyWord, getResult} from "../../../netWork/navigationBar/requests"
 
   // 搜索类型数据
-  import {searchType} from "@/localData"
+  import {searchType} from "../../../localData"
 
   // 导入条形组件
-  import strip from "@/components/strip"
+  import strip from "../../../components/public/strip"
 
   export default {
     name: "search",
@@ -113,7 +113,6 @@
         inputWords: "",
         // 搜索结果对象
         searchResult: null,
-
       }
     },
     methods: {
@@ -161,5 +160,5 @@
 </script>
 
 <style lang="less" scoped>
-  @import "_search.less";
+  @import "_search";
 </style>

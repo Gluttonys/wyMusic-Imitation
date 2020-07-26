@@ -6,7 +6,7 @@
 
 <script>
 
-  import filters from'../singer/filters'
+  import filters from '../../components/public/filters'
   import {authorFilter} from "../../localData"
 
   export default {

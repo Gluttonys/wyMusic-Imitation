@@ -40,11 +40,11 @@
 
 <script>
 
-  import eventBus from "../globalBus/eventBus.js"
+  import eventBus from "../../globalBus/eventBus.js"
 
-  import {getDetailMusic} from "../netWork/footerControl/requests"
+  import {getDetailMusic} from "../../netWork/footerControl/requests"
 
-  import {formatTime} from "../tools/tools"
+  import {formatTime} from "../../tools/tools"
 
   export default {
     name: "footerControl",
@@ -147,7 +147,6 @@
     display: grid;
     grid-template-columns: 240px auto 200px 180px;
 
-
     .control {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -204,7 +203,6 @@
       span {
         justify-self: center;
         align-self: center;
-        /*margin-right: 16px;*/
         font-size: 22px;
       }
 
@@ -230,10 +228,10 @@
     }
 
     /* 修改进度条的默认样式 */
+    .el-slider {
 
-    /deep/ .el-slider {
+      /deep/ .el-slider__runway {
 
-      .el-slider__runway {
         .el-slider__bar {
           background-color: #b3330d;
         }

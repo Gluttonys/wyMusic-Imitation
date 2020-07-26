@@ -33,7 +33,7 @@
 
 <script>
 
-  import strip from '../../components/strip'
+  import strip from '../../components/public/strip'
 
   import {getRankById} from "../../netWork/index/requests"
 

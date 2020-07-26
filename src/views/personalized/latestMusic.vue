@@ -26,8 +26,8 @@
 
 <script>
 
-  import classifyModule from "@/components/classifyModule"
-  import strip from "@/components/strip"
+  import classifyModule from "../../components/public/classifyModule"
+  import strip from "../../components/public/strip"
 
   import {getLatesMusic} from "../../netWork/index/requests"
 

@@ -14,8 +14,8 @@
 
 <script>
 
-  import classifyMoudle from '../../components/classifyModule'
-  import block from '../../components/block'
+  import classifyMoudle from '../../components/public/classifyModule'
+  import block from '../../components/public/block'
 
   import {getTopSingers} from "../../netWork/index/requests"
 

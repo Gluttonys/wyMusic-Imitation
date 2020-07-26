@@ -11,7 +11,6 @@
 <script>
 
   import domestic from './topList/domestic'
-  import global from './topList/global'
 
   export default {
     name: "topListPage",

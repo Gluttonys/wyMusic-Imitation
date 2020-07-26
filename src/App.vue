@@ -21,13 +21,15 @@
   </div>
 </template>
 
-<style lang="less">
+<style lang="scss">
+  @import "../public/scss/main";
+
   .el-container {
     height: 100vh;
     width: 100vw;
 
     .el-header {
-      background-color: #b3330d;
+      background-color: $color-main;
       max-height: 60px;
       overflow: hidden;
     }
@@ -53,10 +55,10 @@
 </style>
 
 <script>
-  import NavigationBar from "./components/navigation-bar"
-  import Sidebar from "./components/sidebar"
-  import SongBlock from "@/components/song-block"
-  import FooterControl from "@/components/footer-control"
+  import NavigationBar from "./components/navigation/navigation-bar"
+  import Sidebar from "./components/sidebar/sidebar"
+  import SongBlock from "./components/songblock/song-block"
+  import FooterControl from "./components/footer/footer-control"
   import Index from "./views/index"
 
   export default {

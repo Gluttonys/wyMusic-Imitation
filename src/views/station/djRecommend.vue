@@ -13,8 +13,8 @@
 
 <script>
 
-  import classifyModule from "@/components/classifyModule"
-  import block from "@/components/block"
+  import classifyModule from "../../components/public/classifyModule"
+  import block from "../../components/public/block"
 
   import {getDjRecommend} from "../../netWork/index/requests"
 

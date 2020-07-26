@@ -16,10 +16,10 @@
 
 <script>
 
-  import classifyModule from "@/components/classifyModule"
-  import block from "@/components/block"
+  import classifyModule from "../../components/public/classifyModule"
+  import block from "../../components/public/block"
 
-  import {formatBigNumber} from "@/tools/tools"
+  import {formatBigNumber} from "../../tools/tools"
 
   import {getRecommendSongList} from "../../netWork/index/requests"
 

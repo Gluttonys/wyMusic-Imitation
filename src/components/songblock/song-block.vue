@@ -22,8 +22,8 @@
 <script>
 
   // 组件传值 bus
-  import eventBus from "../globalBus/eventBus.js"
-  import {informChangeMusic} from "../globalBus/events"
+  import eventBus from "../../globalBus/eventBus.js"
+  import {informChangeMusic} from "../../globalBus/events"
 
   // 获取轮播图请求
   // import {getRotation} from "../netWork/index/requests"

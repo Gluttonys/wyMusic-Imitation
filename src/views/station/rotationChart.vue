@@ -14,7 +14,7 @@
 
 <script>
 
-  import {getRotationChartForStation} from "@/netWork/index/requests"
+  import {getRotationChartForStation} from "../../netWork/index/requests"
 
   export default {
     name: "rotationChart",

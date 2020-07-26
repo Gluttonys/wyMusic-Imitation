@@ -26,9 +26,9 @@
 
 <script>
 
-  import typeTag from "@/components/type-tag"
+  import typeTag from "../../components/public/type-tag"
 
-  import {getAllTypeForStation} from "@/netWork/index/requests"
+  import {getAllTypeForStation} from "../../netWork/index/requests"
 
   export default {
     name: "stationType",
