@@ -42,7 +42,8 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+  @import "../../assets/scss/main";
 
   .wrapper {
     padding: 1em 3em;
@@ -58,7 +59,7 @@
       grid-area: title;
       justify-self: start;
       font-size: 24px;
-      color: #484848;
+      color: $color-text;
     }
 
     .more {
@@ -66,7 +67,7 @@
       justify-self: end;
       font-size: 12px;
       line-height: 24px;
-      color: grey;
+      color: $color-marginalized;
       cursor: pointer;
     }
 
@@ -74,14 +75,21 @@
       grid-area: split;
       height: 1px;
       width: 100%;
-      background-color: #eeeeee;
+      background-color: $color-bg-plain;
       margin: 0.5em auto;
     }
 
     .content {
       grid-area: content;
-      /*display: grid;*/
-      /*grid-template-columns: repeat(5, 1fr);*/
+
+      a {
+        color: $color-text;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-text-hover;
+        }
+      }
     }
 
   }

@@ -1,0 +1,8 @@
+// 文本单行超出隐藏
+@mixin text-overflow-hide {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+

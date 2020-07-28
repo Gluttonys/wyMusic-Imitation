@@ -10,7 +10,11 @@
           <sidebar></sidebar>
         </el-aside>
         <el-main>
-          <router-view></router-view>
+          <transition>
+            <keep-alive :include="/index/">
+              <router-view></router-view>
+            </keep-alive>
+          </transition>
         </el-main>
       </el-container>
       <el-footer>
@@ -22,7 +26,7 @@
 </template>
 
 <style lang="scss">
-  @import "../public/scss/main";
+  @import "assets/scss/main";
 
   .el-container {
     height: 100vh;
@@ -59,7 +63,7 @@
   import Sidebar from "./components/sidebar/sidebar"
   import SongBlock from "./components/songblock/song-block"
   import FooterControl from "./components/footer/footer-control"
-  import Index from "./views/index"
+  import Index from "./views/index/index"
 
   export default {
     components: {Index, FooterControl, SongBlock, Sidebar, NavigationBar}

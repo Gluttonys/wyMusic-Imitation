@@ -15,6 +15,9 @@ function formatTime(second) {
 }
 
 function formatBigNumber(number) {
+  /**
+   * 格式化 大数
+   */
   if (number <= 10000) {
     return number
   } else if (number <= 20000) {
@@ -30,10 +33,41 @@ function formatBigNumber(number) {
 
 
 function formatMillisecond(millisecond) {
+  /**
+   * 格式化毫秒数， 用来计算歌曲播放的时间
+   */
   let second = millisecond / 1000
   let min = parseInt(second / 60).toString().padStart(2, "0")
   let sec = parseInt(second % 60).toString().padStart(2, "0")
   return `${min}:${sec}`
+}
+
+function formatTimeStamp(num, fmt = "yyyy-MM-dd HH:mm:ss.S") {
+  /**
+   * num : 时间戳
+   * fmt : 格式化模板
+   */
+  let date = new Date(num)
+  let obj = {
+    "M+": date.getMonth() + 1, //月份
+    "d+": date.getDate(), //日
+    "H+": date.getHours(), //小时
+    "m+": date.getMinutes(), //分
+    "s+": date.getSeconds(), //秒
+    "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+    "S": date.getMilliseconds() //毫秒
+  }
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length))
+  }
+
+  Object.keys(obj).forEach(k => {
+    if (new RegExp(`(${k})`).test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (obj[k]) : (("00" + obj[k]).substr(("" + obj[k]).length)))
+    }
+  })
+
+  return fmt
 }
 
 function getLocalStorageObj() {
@@ -71,6 +105,7 @@ export {
   formatTime,
   formatBigNumber,
   formatMillisecond,
+  formatTimeStamp,
   getLocalStorageObj,
   setHistoryForWY,
   delHistoryForXY

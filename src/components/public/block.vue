@@ -22,7 +22,8 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+
   .block {
     display: grid;
     grid-template-columns: 1fr;

@@ -127,6 +127,9 @@
         }
       }
     },
+    beforeDestroy() {
+      //  清除音乐滑块定时器
+    },
     watch: {
       percent(newValue, _) {
         this.iconButton = newValue === 100 ? this.stopIcon : this.startIcon
@@ -138,7 +141,8 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+  @import "../../assets/scss/main";
 
   .footer {
     width: 100%;
@@ -154,7 +158,7 @@
 
       span {
         display: inline-block;
-        background-color: #b3330d;
+        background-color: $color-main;
         border-radius: 50%;
         line-height: 45px;
         font-weight: 800;
@@ -230,16 +234,16 @@
     /* 修改进度条的默认样式 */
     .el-slider {
 
-      /deep/ .el-slider__runway {
+      ::v-deep .el-slider__runway {
 
         .el-slider__bar {
-          background-color: #b3330d;
+          background-color: $color-main;
         }
 
         .el-slider__button-wrapper {
 
           .el-slider__button {
-            border: 2px solid #b3330d;
+            border: 2px solid $color-main;
             width: 12px;
             height: 12px;
           }

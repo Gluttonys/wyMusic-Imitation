@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// 导入基础样式表 重置CSS样式
-import './assets/css/normalize.css'
 // 全局引入字体图标样式
 import './assets/font/iconfont.css'
 // 全局导入 font-awesome
