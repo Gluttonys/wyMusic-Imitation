@@ -1,0 +1,63 @@
+@import "../../../assets/scss/main";
+
+.commandStrip {
+  font-weight: 100;
+  margin: 1em 0;
+  border-bottom: 1px solid $color-bg-plain-hover;
+
+  display: grid;
+  grid-template-columns: 90px 1fr minmax(40px, 100px) repeat(2, 40px);
+  grid-template-areas:
+          "avatar conten conten conten conten"
+          "avatar tim agree shared reply";
+
+  .command__avatar {
+    grid-area: avatar;
+    justify-self: center;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+
+  .command__content {
+    grid-area: conten;
+
+    span:first-child {
+      color: darkblue;
+    }
+
+  }
+
+  .command__time {
+    grid-area: tim;
+    color: $color-marginalized;
+  }
+
+  .command__agree,
+  .command__reply,
+  .command__shared {
+    cursor: pointer;
+    color: $color-marginalized;
+    justify-self: center;
+  }
+
+  .command__agree {
+    grid-area: agree;
+
+    p {
+      display: inline-block;
+    }
+
+  }
+
+  .command__shared {
+    grid-area: shared;
+  }
+
+  .command__reply {
+    grid-area: reply;
+  }
+}

@@ -1,16 +1,16 @@
 <template>
   <div class="search-input">
 
-    <div class="back">
+    <div class="back" @click="$router.back()">
       <span class="iconfont icon-103fangxiang_xiangzuo"></span>
     </div>
 
-    <div class="go">
+    <div class="go" @click="$router.forward()">
       <span class="iconfont icon-101fangxiang_xiangyou"></span>
     </div>
 
     <div class="search-input__wrapper">
-      <input ref="input" type="text" :placeholder="defaultPlAceHolderObj.showKeyword" @click="drawer = true">
+      <input ref="input" type="text" :placeholder="defaultPlAceHolderObj['showKeyword']" @click="drawer = true">
       <span class="iconfont icon-sousuo"></span>
     </div>
 
@@ -112,7 +112,7 @@
         // 搜索框数据绑定的元素
         inputWords: "",
         // 搜索结果对象
-        searchResult: null,
+        searchResult: null
       }
     },
     methods: {
@@ -146,7 +146,6 @@
           this.$message.error("获取搜索热榜失败，请打开控制台查看报错信息")
           console.error(error)
         })
-
       getDefaultKeyWord()
         .then(data => {
           this.defaultPlAceHolderObj = data.data
@@ -155,10 +154,10 @@
           this.$message.error("获取默认搜索内容失败， 请打开控制台查看错误日志")
           console.error(error)
         })
-    }
+    },
   }
 </script>
 
-<style lang="less" scoped>
-  @import "_search";
+<style lang="scss" scoped>
+  @import "search";
 </style>

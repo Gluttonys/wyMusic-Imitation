@@ -1,14 +1,110 @@
+@import "../../../assets/scss/main";
+
 .songListDetail {
-    // Vars
+  margin: 1em 3em;
 
-    // Support
+  // 更改 标签页 默认样式
+  ::v-deep .el-tabs__item {
+    color: $color-main;
 
-    // Module
-    & {
-        //
+
+    &:hover {
+      color: $color-main;
     }
 
-    // Facets
+  }
 
-    // States
+  ::v-deep .el-tabs__active-bar {
+    background-color: $color-main;
+  }
+
+  .strip__inner {
+    font-weight: 100;
+    line-height: 35px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    display: grid;
+    grid-template-columns: 40px 30px 30px 2fr 1fr 1fr 60px;
+
+    .strip__inner__index {
+      justify-self: center;
+      color: $color-marginalized;
+
+      &:hover {
+        color: $color-text;
+      }
+
+    }
+
+    .strip__inner__like {
+      justify-self: center;
+      color: $color-marginalized;
+
+      &:hover {
+        color: $color-text;
+      }
+
+    }
+
+    .strip__inner__download {
+      justify-self: center;
+      color: $color-marginalized;
+
+      &:hover {
+        color: $color-text;
+      }
+
+    }
+
+    .strip__inner__name {
+      padding: 0 1em;
+      @include text-overflow-hide
+    }
+
+    .strip__inner__singer {
+      @include text-overflow-hide
+    }
+
+    .strip__inner__album {
+      @include text-overflow-hide
+    }
+
+    .strip__inner__time {
+      justify-self: center;
+      color: $color-marginalized;
+
+      &:hover {
+        color: $color-text;
+      }
+
+
+    }
+
+  }
+
+  ::v-deep .block {
+
+    .img {
+      width: 70%;
+      height: 70%;
+      justify-self: center;
+      align-self: end;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    .desc {
+      text-align: center;
+      align-self: start;
+    }
+
+  }
+
 }

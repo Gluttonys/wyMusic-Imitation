@@ -1,6 +1,8 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 
+import store from "../store"
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +24,7 @@ const routes = [
     // 如果 props 被设置为 true，route.params 将会被设置为组件属性。
     props: true
   },
+
   {
     // MV 播放页面
     name: "MVPlayer",
@@ -29,6 +32,7 @@ const routes = [
     props: true,
     component: () => import("../views/MvPlayer/MvPlayer")
   },
+
   {
     // 歌曲页面， 就是点击左下角的音乐块
     name: "music",
@@ -43,5 +47,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// 路由守卫
+
+router.beforeEach((to, _, next) => {
+  next()
+})
+
+router.afterEach((to, from) => {
+})
+
 
 export default router

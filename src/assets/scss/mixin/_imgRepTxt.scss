@@ -1,0 +1,23 @@
+// 图片代替文字， 这个mixin 需要和 HTML 配合使用， 请参考下面的范例结构
+
+// 范例结构
+// <h2><span></span> Hello world</h2>
+// 外层容器大小固定， 利用图片挤占文字的空间， 达到隐藏文字， 只显示图片的效果
+
+@mixin image_rep_text_wra($wra_w, $wra_h) {
+  // $wra_w : 外容器的宽度
+  // $wra_h ：外容器的高度
+  // in H2 ： 这个 mixin 使用在外层容器当中
+
+  width: $wra_w;
+  height: $wra_h;
+  position: relative;
+}
+
+@mixin img_rep_text_inn($url) {
+  // $url : 填充的背景
+  // in span : 这个 mixin 使用在内层容器中
+
+  background: url($url) no-repeat;
+  position: absolute;
+}

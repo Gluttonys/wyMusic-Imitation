@@ -12,7 +12,11 @@ export default new Vuex.Store({
     // 当前tabbar
     currentTab: "tuijian",
     // tabBar 列表
-    tabBar: ["tuijian", "playlist", "diantai", "paihangbang", "songer", "zuixin"]
+    tabBar: ["tuijian", "playlist", "diantai", "paihangbang", "songer", "zuixin"],
+    // 记录当前路由列表
+    routers: [],
+    // 一个指向当前路由的索引值
+    routerIndex: 0
   },
   getters: {},
   mutations: {

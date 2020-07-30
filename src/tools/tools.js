@@ -31,7 +31,6 @@ function formatBigNumber(number) {
   }
 }
 
-
 function formatMillisecond(millisecond) {
   /**
    * 格式化毫秒数， 用来计算歌曲播放的时间
@@ -100,6 +99,20 @@ function delHistoryForXY(key) {
   window.localStorage.removeItem("wy-history" + key)
 }
 
+function inError(mes, error) {
+  this.$message.error(`获取${mes}失败， 请打开控制台查看报错信息`)
+  console.error(error)
+}
+
+Array.prototype.first = function () {
+  // 返回数组中的第一个元素
+  return this[0]
+}
+
+Array.prototype.last = function () {
+  // 返回数组中的最后一个元素
+  return this.slice(-1)[0]
+}
 
 export {
   formatTime,
@@ -108,5 +121,6 @@ export {
   formatTimeStamp,
   getLocalStorageObj,
   setHistoryForWY,
-  delHistoryForXY
+  delHistoryForXY,
+  inError
 }

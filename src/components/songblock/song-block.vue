@@ -48,24 +48,6 @@
         // 通知底下的控制条该换歌了  并传入该歌曲的数据
         informChangeMusic(this.musicInfo)
       })
-
-      // 初始化界面的第一首歌, 后期优化
-      // getRotation().then(data => {
-      //   if (data.code >= 200 && data.code < 300 || data.code === 304) {
-      //     let first = data.data[0]
-      //     this.musicInfo = {
-      //       mId: first.id,
-      //       mPic: first.album.blurPicUrl,
-      //       mName: first.name,
-      //       mAuthor: first.album.artists[0].name
-      //     }
-      //     informChangeMusic(this.musicInfo)
-      //   }
-      // }).catch(error => {
-      //   this.$message.error("获取推荐歌曲失败， 请打开控制台查看错误日志")
-      //   console.error(error)
-      // })
-
     },
   }
 </script>

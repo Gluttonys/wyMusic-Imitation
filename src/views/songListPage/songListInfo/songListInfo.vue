@@ -45,12 +45,12 @@
 
       <el-button class="btn__prim" size="mini">
         <span class="iconfont icon-shoucangjia"></span>
-        收藏 ({{playlistDetail['subscribedCount']}})
+        收藏 ({{playlistDetail["subscribedCount"]}})
       </el-button>
 
       <el-button class="btn__prim" size="mini">
         <span class="iconfont icon-fenxiang"></span>
-        分享 ({{playlistDetail['shareCount']}})
+        分享 ({{playlistDetail["shareCount"]}})
       </el-button>
 
       <el-button class="btn__prim" size="mini">
@@ -80,6 +80,8 @@
 
   import {formatBigNumber, formatTimeStamp} from "../../../tools/tools"
 
+  import {informIds, loadDataFromInfo} from "../../../globalBus/events"
+
   export default {
     props: {
       id: {
@@ -103,6 +105,7 @@
         .then(data => {
           // console.log(data)
           this.playlistDetail = data["playlist"]
+
           // 发现较深层次的数据， 第一轮渲染渲染不出来， 会报一个 undefined 错误
           this.$nextTick(_ => {
             let {avatarUrl, nickname} = this.playlistDetail["creator"]
@@ -110,12 +113,17 @@
             this.creatorName = nickname
           })
 
-
+          // 向下面的 songListDetail 发送 音乐id列表
+          informIds(this.playlistDetail["trackIds"])
+          loadDataFromInfo({
+            commandCount: this.playlistDetail["commentCount"]
+          })
         })
         .catch(error => {
           this.$message.error("获取音乐列表失败， 请打开控制台查看具体报错信息")
           console.error(error)
         })
+
     }
   }
 </script>

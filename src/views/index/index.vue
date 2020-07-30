@@ -16,7 +16,7 @@
         <station-page></station-page>
       </el-tab-pane>
 
-       <!-- 排行榜 -->
+      <!-- 排行榜 -->
       <el-tab-pane label="排行榜" name="paihangbang" :lazy="true">
         <top-list-page></top-list-page>
       </el-tab-pane>
@@ -39,15 +39,15 @@
   // 首页
   import personalizedPage from "./personalizedPage"
   // 歌单
-  import songSheet from './songSheet'
+  import songSheet from "./songSheet"
   // 电台
-  import stationPage from './stationPage'
+  import stationPage from "./stationPage"
   // 排行榜
-  import topListPage from './topListPage'
+  import topListPage from "./topListPage"
   // 歌手页面
-  import singer from './singer'
+  import singer from "./singer"
   // 最新音乐
-  import recentMusicPage from './recentMusicPage'
+  import recentMusicPage from "./recentMusicPage"
 
 
   export default {
@@ -75,7 +75,7 @@
   }
 </script>
 
-<style lang="css">
+<style lang="scss" scoped>
 
   .el-tabs__item {
     min-width: 100px;
@@ -83,16 +83,16 @@
     font-size: 22px;
   }
 
-  .el-tabs__item:hover,
-  .el-tabs__item.is-active {
-    color: #b3330d !important;
+  ::v-deep .el-tabs__item:hover,
+  ::v-deep .el-tabs__item.is-active {
+    color: #b3330d;
   }
 
-  .el-tabs__active-bar {
-    background-color: #b3330d !important;
+  ::v-deep .el-tabs__active-bar {
+    background-color: #b3330d;
   }
 
-  .el-tabs__nav {
+  ::v-deep .el-tabs__nav {
     left: 50%;
     transform: translateX(-50%) !important;
   }
