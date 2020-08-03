@@ -7,7 +7,6 @@
   ::v-deep .el-tabs__item {
     color: $color-main;
 
-
     &:hover {
       color: $color-main;
     }
@@ -56,12 +55,15 @@
       &:hover {
         color: $color-text;
       }
-
     }
 
     .strip__inner__name {
       padding: 0 1em;
-      @include text-overflow-hide
+      @include text-overflow-hide;
+
+      .strip__inner__name__desc {
+        color: $color-marginalized;
+      }
     }
 
     .strip__inner__singer {
@@ -79,10 +81,12 @@
       &:hover {
         color: $color-text;
       }
-
-
     }
+  }
 
+  .vip {
+    color: $color-text-vip;
+    cursor: not-allowed;
   }
 
   ::v-deep .block {

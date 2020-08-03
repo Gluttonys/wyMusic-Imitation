@@ -44,7 +44,7 @@
 
   import {getDetailMusic} from "../../netWork/footerControl/requests"
 
-  import {formatTime} from "../../tools/tools"
+  import {formatTime, inError} from "../../tools/tools"
 
   export default {
     name: "footerControl",
@@ -64,19 +64,16 @@
         iconButton: "icon-101fangxiang_xiangyou"
       }
     },
-    created() {
-      eventBus.$on("changeMusic", musicInfo => {
+    mounted() {
+      eventBus.$on("changeMusic", id => {
         // 发送网络请求， 获取这首歌
-        getDetailMusic(musicInfo.mId)
+        getDetailMusic(id)
           .then(data => this.handleMusicUrl(data))
-          .catch(error => {
-            this.$message.error("获取具体歌曲请求失败， 请打开控制台查看报错信息")
-          })
+          .catch(error => inError.call(this, "具体歌曲", error))
       })
     },
     methods: {
       togglePlay() {
-
         if (this.isStart) {
           this.$refs.player.pause()
           this.isStart = false
@@ -86,24 +83,21 @@
               this.controller()
               this.$message.success("开始播放音乐~")
             })
-            .catch(_ => {
-              this.$message.error("获取歌曲失败！！请重新尝试点击获取")
+            .catch( error => {
+              inError.call(this, "歌曲", error)
             })
         }
       },
 
       handleMusicUrl(data) {
-        /**
-         * 首页自动选择热搜第一的歌曲 && 通过别处点击的来的播放的音乐
-         */
-        this.musicUrl = data.data[0].url
+        this.musicUrl = data.data[0].url  /** 这里没有考虑无法播放的歌曲 （无版权歌曲， 付费歌曲等情况） */
         this.$nextTick(() => {
           this.$refs.player.play()
             .then(_ => {
               this.controller()
             })
-            .catch(_ => {
-              this.$message.error("获取歌曲失败！！请重新尝试点击获取")
+            .catch(error => {
+              inError.call(this, "歌曲", error)
             })
         })
       },

@@ -7,7 +7,7 @@
         <img class="carousel-img"
              :src="item.mPic"
              :alt="item.mName"
-             @click="getMusic(item)"
+             @click="informGetMusic(item['mId'])"
         >
       </el-carousel-item>
     </el-carousel>
@@ -50,9 +50,7 @@
 
     },
     methods: {
-      getMusic(musicData) {
-        informGetMusic(musicData)
-      },
+      informGetMusic
     }
   }
 </script>

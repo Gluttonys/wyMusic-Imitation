@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <div class="img">
-      <img :src="imgUrl" alt="">
+      <img :src="imgUrl" alt="" @click="handleImgClick">
     </div>
     <p class="desc">
       <slot></slot>
@@ -17,6 +17,11 @@
         require: true,
         type: String,
         default: ""
+      }
+    },
+    methods: {
+      handleImgClick() {
+        this.$emit("click")
       }
     }
   }

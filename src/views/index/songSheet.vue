@@ -2,7 +2,7 @@
   <div>
 
     <div class="search">
-      <div class="all-type">全部分类</div>
+      <!--<div class="all-type">全部分类</div>-->
 
       <span>热门分类</span>
       <span v-for="type of hotType" :key="type.id" class="hot-type">
@@ -11,10 +11,9 @@
     </div>
 
     <classify-module title="" :grid="6" noMore>
-
       <div class="block-decorate" v-for="songList of currentSongSheetList" :key="songList.id">
-        <block :imgUrl="songList.coverImgUrl">
-          {{songList.name}}
+        <block :imgUrl="songList['coverImgUrl']" @click="handleIntoSongsheet(songList.id)">
+          {{songList['name']}}
         </block>
       </div>
 
@@ -63,6 +62,11 @@
 
 
 
+    },
+    methods: {
+      handleIntoSongsheet(songsheetId) {
+        this.$router.push(`/songList/${songsheetId}`)
+      }
     }
   }
 </script>

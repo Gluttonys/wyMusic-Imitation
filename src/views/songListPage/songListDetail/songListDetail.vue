@@ -4,7 +4,7 @@
 
       <el-tab-pane label="歌曲列表" name="list" lazy>
         <strip v-for="(music, index) in musicList" :key="music['id']">
-          <div class="strip__inner">
+          <div class="strip__inner" :class="{vip: isVip(index)}">
             <div class="strip__inner__index">
               {{(index + 1).toString().padStart(2, "0")}}
             </div>
@@ -17,8 +17,11 @@
               <span class="iconfont icon-xiazai"></span>
             </div>
 
-            <div class="strip__inner__name">
+            <div class="strip__inner__name" @click="informGetMusic(music.id)">
               {{music.name}}
+              <span class="strip__inner__name__desc" v-if="music['alia'][0]">
+                ({{music['alia'][0]}})
+              </span>
             </div>
 
             <div class="strip__inner__singer">
@@ -71,6 +74,8 @@
 
   // 用于组件间传值的 bus
   import eventBus from "../../../globalBus/eventBus"
+  import {informGetMusic} from "../../../globalBus/events"
+
   // 网络请求方法
   import {
     getMusic,
@@ -97,6 +102,8 @@
         musicList: [],
         // 默认显示的音乐列表
         activeName: "list",
+        // Vip列表， 用于判定是否是付费歌曲的
+        vipList: [],
         // 评论相关
         commandOffset: 1,
         commandList: [],
@@ -114,6 +121,7 @@
         // 网络请求， 获取音乐列表
         getMusic({ids: this.ids.join(",")})
           .then(data => {
+            this.vipList = data["privileges"]
             // 这里需要做一下懒加载（下滑加载更多）优化
             this.musicList = data["songs"]
           })
@@ -129,7 +137,6 @@
     },
     methods: {
       handleClick(tab, event) {
-        // console.log(tab, event)
         let {name} = tab
         if (name === "command") {
           // 当滑块移动到评论区域时候
@@ -138,7 +145,8 @@
           this.getCollect
         }
       },
-      formatMillisecond
+      formatMillisecond,
+      informGetMusic
     },
     computed: {
       getCommand() {
@@ -169,6 +177,11 @@
           .catch(error => {
             inError.call(this, "收藏者", error)
           })
+      },
+      isVip() {
+        return (index) => {
+          return !this.vipList[index]['pl']
+        }
       }
     },
     components: {

@@ -11,7 +11,7 @@
         <div class="song-pic">
           <img :src="song.mPic" :alt="song.name">
           <span class="iconfont icon-bofang"
-                @click="getMusic(song)"></span>
+                @click="informGetMusic(song.mId)"></span>
         </div>
 
         <p class="song-name">{{song.mName}}</p>
@@ -50,10 +50,10 @@
         .then(data => {
           data.result.forEach(item => {
             this.songList.push({
-              mId: item.id,
-              mPic: item.picUrl,
-              mName: item.name,
-              mAuthor: item.song.artists[0].name
+              mId: item["id"],
+              mPic: item["picUrl"],
+              mName: item["name"],
+              mAuthor: item["song"]["artists"][0]["name"]
             })
           })
         })
@@ -66,9 +66,7 @@
       getBgColor(num) {
         return (num % 4 === 0 || num % 4 === 1) ? "#f8f8f8" : ""
       },
-      getMusic(musicData) {
-        informGetMusic(musicData)
-      }
+      informGetMusic
     }
   }
 </script>
@@ -121,7 +119,6 @@
     }
 
   }
-
 
 
 </style>

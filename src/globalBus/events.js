@@ -6,13 +6,16 @@ function informLoged() {
 }
 
 // 通知左下角的音乐块换歌
-function informGetMusic(options) {
-  eventBus.$emit("getMusic", options)
+function informGetMusic(id) {
+  /**
+   * 使用此方法， 可以从任意地方更换歌曲， 只要传递歌曲的ID
+   */
+  eventBus.$emit("getMusic", id)
 }
 
 // 通知底下得音乐控制条换歌 控制播放音乐
-function informChangeMusic(options) {
-  eventBus.$emit("changeMusic", options)
+function informChangeMusic(id) {
+  eventBus.$emit("changeMusic", id)
 }
 
 // 音乐列表页 上面获取的歌单信息中的音乐列表 ids 传递给下面的列表片段
