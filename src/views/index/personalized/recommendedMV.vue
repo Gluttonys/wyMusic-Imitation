@@ -84,6 +84,7 @@
       background: linear-gradient(to right, rgba(255, 255, 255, 0.01), rgba(77, 77, 77, 0.7));
       color: #ffffff;
       font-size: 14px;
+      z-index: 9999;
     }
 
     .mask {
@@ -95,6 +96,7 @@
       font-size: 13px;
       width: 100%;
       letter-spacing: 2px;
+      z-index: 9999;
     }
 
     .mv-name {

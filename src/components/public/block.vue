@@ -1,7 +1,16 @@
 <template>
   <div class="block">
     <div class="img">
-      <img :src="imgUrl" alt="" @click="handleImgClick">
+
+      <el-image :src="imgUrl" @click="handleImgClick" lazy>
+        <div slot="placeholder" class="image-slot">
+          <i class="el-icon-loading"></i>
+        </div>
+        <div slot="error" class="image-slot">
+          <i class="el-icon-picture-outline"></i>
+        </div>
+      </el-image>
+
     </div>
     <p class="desc">
       <slot></slot>
@@ -29,22 +38,22 @@
 
 <style lang="scss" scoped>
 
+  @import "../../assets/scss/main";
+
   .block {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 150px minmax(0, 50px);
     cursor: pointer;
-
-    .img {
-      img {
-        height: 100%;
-        width: 100%;
-      }
-
-    }
 
     .desc {
       font-size: 12px;
+    }
+
+    .image-slot {
+      font-size: 2em;
+      height: 3em;
+      line-height: 3em;
+      margin-left: 60px;
+      color: $color-text;
     }
 
   }

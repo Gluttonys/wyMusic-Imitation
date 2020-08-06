@@ -60,10 +60,13 @@
         <div class="title">
           <span>创建的歌单</span>
         </div>
-          <div class="item" v-for="list of myPlayList" :key="list.id">
-            <span class="iconfont icon-yinleliebiao"></span>
-            <span>{{list.name}}</span>
-          </div>
+        <div class="item"
+             v-for="list of myPlayList"
+             :key="list.id"
+             @click="$router.push(`/songList/${list.id}`)">
+          <span class="iconfont icon-yinleliebiao"></span>
+          <span>{{list.name}}</span>
+        </div>
       </div>
 
       <!-- 收藏的歌单 -->
@@ -72,10 +75,13 @@
           <span>收藏的歌单</span>
         </div>
 
-          <div class="item" v-for="list of collectPlayList" :key="list.id">
-            <span class="iconfont icon-xin"></span>
-            <span>{{list.name}}</span>
-          </div>
+        <div class="item"
+             v-for="list of collectPlayList"
+             :key="list.id"
+             @click="toPlayList(list.id)">
+          <span class="iconfont icon-xin"></span>
+          <span>{{list.name}}</span>
+        </div>
 
       </div>
     </div>
@@ -89,6 +95,8 @@
 
   // 网络请求
   import {getPlayList} from "../../netWork/sidebar/requests"
+  import {inError} from "../../tools/tools"
+  import {informGetMusic} from "../../globalBus/events"
 
   import eventBus from "../../globalBus/eventBus.js"
   import SongBlock from "../songblock/song-block"
@@ -109,27 +117,24 @@
     created() {
       eventBus.$on("isLogined", () => {
 
-        getPlayList({uid: this.$store.state.uid}).then(data => {
-          this.playList = data.playlist
+        getPlayList({uid: this.$store.state.uid})
+          .then(data => {
+            this.playList = data["playlist"]
 
-          // 过滤歌单， 是我得歌单， 还是收藏的歌单
-          for (let listItem of this.playList) {
-            if (listItem.creator.nickname === this.$store.state.uname) {
-              // 昵称相同，是自己的
-              this.myPlayList.push(listItem)
-            } else {
-              // 昵称不同， 是收藏的歌单
-              this.collectPlayList.push(listItem)
+            // 过滤歌单， 是我得歌单， 还是收藏的歌单
+            for (let listItem of this.playList) {
+              if (listItem["creator"]["nickname"] === this.$store.state.uname) {
+                // 昵称相同，是自己的
+                this.myPlayList.push(listItem)
+              } else {
+                // 昵称不同， 是收藏的歌单
+                this.collectPlayList.push(listItem)
+              }
             }
-          }
-        }).catch(reason => {
-          console.error(reason)
-        })
-
+          })
+          .catch(error => inError.call(this, "用户歌单", error))
       })
-    },
-    methods: {}
-
+    }
   }
 </script>
 

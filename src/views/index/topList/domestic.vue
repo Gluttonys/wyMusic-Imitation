@@ -1,7 +1,7 @@
 <template>
   <div class="domestic">
     <classify-module title="官方榜" no-more :grid="4">
-      <rank-block more="更多地址" :id="list.id" v-for="list of rankOfSongList" :key="list.id"></rank-block>
+      <rank-block :more="`/songList/${list.id}`" :id="list.id" v-for="list of rankOfSongList" :key="list.id"></rank-block>
     </classify-module>
 
   </div>

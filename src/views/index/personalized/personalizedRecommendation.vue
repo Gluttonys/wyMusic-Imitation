@@ -3,12 +3,11 @@
     <!-- 轮播图 -->
     <el-carousel :interval="4000" type="card" height="250px">
       <el-carousel-item v-for="item in this.recommendList" :key="item.mId">
-        <!--<h3 class="medium">{{ item }}</h3>-->
-        <img class="carousel-img"
-             :src="item.mPic"
-             :alt="item.mName"
-             @click="informGetMusic(item['mId'])"
-        >
+        <el-image class="carousel-img"
+                  :src="item.mPic"
+                  :alt="item.mName"
+                  @click="informGetMusic(item['mId'])">
+        </el-image>
       </el-carousel-item>
     </el-carousel>
   </div>

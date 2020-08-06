@@ -3,7 +3,7 @@
     <!-- logo区域 -->
     <div class="logo">
       <span class="iconfont icon-yinlemusic214"></span>
-      <span>网易云音乐</span>
+      <span>谢尚柱音乐</span>
     </div>
     <!-- 搜索框区域 -->
     <search></search>

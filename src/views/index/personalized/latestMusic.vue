@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <classify-module title="最新音乐" more="连接地址" :grid="2" :gap="0">
+    <classify-module title="最新音乐" more="zuixin" :grid="2" :gap="0" @click="handleMore">
 
       <strip v-for="(song, index) of songList"
              :key="song.mId"
@@ -63,10 +63,13 @@
         })
     },
     methods: {
+      informGetMusic,
       getBgColor(num) {
         return (num % 4 === 0 || num % 4 === 1) ? "#f8f8f8" : ""
       },
-      informGetMusic
+      handleMore(activeBar) {
+        this.$store.commit("setCurrentTab", activeBar)
+      }
     }
   }
 </script>

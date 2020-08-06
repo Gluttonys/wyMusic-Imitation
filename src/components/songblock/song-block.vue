@@ -1,7 +1,17 @@
 <template>
   <div class="song">
     <div class="song-img">
-      <img :src="musicInfo.mPic" alt="音乐图片">
+      <router-link :to="`/music/${musicInfo.mId}`">
+        <el-image :src="musicInfo['mPic']">
+          <div slot="placeholder" class="image-slot">
+            <i class="el-icon-loading"></i>
+          </div>
+          <div slot="error" class="image-slot">
+            <i class="el-icon-picture-outline"></i>
+          </div>
+        </el-image>
+      </router-link>
+      
     </div>
     <div class="name">
       <span>{{musicInfo.mName}}</span>
@@ -49,8 +59,8 @@
         // 获取歌曲详细信息， 类如歌曲名， 歌手， 首图等
         getInfoMusic(mID)
           .then(data => {
-
-            if (data['privileges'][0]['pl']) {
+            // 检测是否时付费歌曲
+            if (data["privileges"][0]["pl"]) {
               this.musicInfo.mId = mID
               this.musicInfo.mPic = data["songs"][0]["al"]["picUrl"]
               this.musicInfo.mName = data["songs"][0]["name"]
@@ -73,52 +83,5 @@
 </script>
 
 <style lang="scss" scoped>
-
-  .song {
-    padding: 10px;
-    display: grid;
-    border-top: 1px solid #bbbbbb;
-    grid-template-rows: repeat(2, 30px);
-    grid-template-columns: 60px 195px 25px;
-    grid-template-areas: "img name heard" "img author share";
-
-    align-items: center;
-    font-weight: 200;
-
-    .song-img {
-      grid-area: img;
-
-      img {
-        height: 60px;
-        width: 60px;
-        cursor: pointer;
-      }
-    }
-
-    .name {
-      grid-area: name;
-      margin-left: 1em;
-      max-width: 8em;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .author {
-      grid-area: author;
-      margin-left: 1em;
-    }
-
-    .heard {
-      grid-area: heard;
-      cursor: pointer;
-    }
-
-    .share {
-      cursor: pointer;
-      grid-area: share;
-    }
-  }
-
-
+  @import "songB";
 </style>

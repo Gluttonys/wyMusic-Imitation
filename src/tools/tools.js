@@ -69,6 +69,19 @@ function formatTimeStamp(num, fmt = "yyyy-MM-dd HH:mm:ss.S") {
   return fmt
 }
 
+function backToStamp(timeStr) {
+  /* 
+    [01:23.448]
+    将此类时间转换为时间戳 83 s
+  */
+ let result = 0
+  timeStr.replace(/\[(\d{2}):(\d{2})\.\d{0,3}\]/, (_, $min, $sec) => {
+    result = parseInt($min) * 60 + parseInt($sec)
+  })
+  return result
+}
+
+
 function getLocalStorageObj() {
   /**
    * 获取首页搜索记录的对象
@@ -104,6 +117,7 @@ function inError(mes, error) {
   console.error(error)
 }
 
+
 Array.prototype.first = function () {
   // 返回数组中的第一个元素
   return this[0]
@@ -122,5 +136,6 @@ export {
   getLocalStorageObj,
   setHistoryForWY,
   delHistoryForXY,
-  inError
+  inError,
+  backToStamp
 }

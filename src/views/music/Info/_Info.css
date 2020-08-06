@@ -1,0 +1,18 @@
+.Info {
+  font-weight: 100;
+  padding: 0 1em;
+}
+
+.Info .song__name h2 {
+  font-weight: 400;
+}
+
+.Info .song__info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.Info .song__lyric {
+  max-height: 55vh;
+  overflow: auto;
+}

@@ -25,7 +25,23 @@ function informIds(options) {
 
 // 携带 评论数量
 function loadDataFromInfo({commandCount}) {
+  /**
+   * 歌单页面
+   */
   eventBus.$emit("getCommandCount", commandCount)
+}
+
+function informDumpToPoint(second) {
+  /*
+    通知底下的控制条将音乐跳转到指定的时间点
+    这个操作往往是通过单机歌词实现的
+  */
+  eventBus.$emit("dumpToPoint", second)
+}
+
+function informRotate(state) {
+  /* 通知音乐播放页面的图片的旋转状态 */
+  eventBus.$emit("informRutate", state)
 }
 
 
@@ -34,5 +50,7 @@ export {
   informGetMusic,
   informChangeMusic,
   informIds,
-  loadDataFromInfo
+  loadDataFromInfo,
+  informDumpToPoint,
+  informRotate
 }

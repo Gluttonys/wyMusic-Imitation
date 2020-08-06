@@ -2,7 +2,7 @@
 
   <div class="content">
     <!-- 顶部导航栏 -->
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-model="$store.state.currentTab" @tab-click="handleClick">
 
       <el-tab-pane label="个性推荐" name="tuijian" :lazy="true">
         <personalized-page></personalized-page>
@@ -53,10 +53,7 @@
   export default {
     name: "index",
     data() {
-      return {
-        // 当前活动tab
-        activeName: this.$store.state.currentTab
-      }
+      return {}
     },
     components: {
       personalizedPage,
@@ -69,7 +66,7 @@
     methods: {
       // 单机导航栏触发的事件
       handleClick(tab, event) {
-        this.$store.commit("setCurrentTab", tab.$options.propsData.name)
+        this.$store.commit("setCurrentTab", tab.$options.propsData['name'])
       }
     }
   }

@@ -1,7 +1,6 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 
-import store from "../store"
 
 Vue.use(VueRouter)
 
@@ -22,7 +21,10 @@ const routes = [
     // 从而使组件只能在某些特定的 URL 上使用，限制了其灵活性。
     // 使用 props 将组件和路由解耦：
     // 如果 props 被设置为 true，route.params 将会被设置为组件属性。
-    props: true
+    props: true,
+    meta: {
+      keepAlive: false // 不需要缓存
+    }
   },
 
   {

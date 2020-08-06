@@ -100,7 +100,7 @@
       formatBigNumber,
       formatTimeStamp
     },
-    created() {
+    mounted() {
       getPlaylistDetail({id: this.id})
         .then(data => {
           // console.log(data)

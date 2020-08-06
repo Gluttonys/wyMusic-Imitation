@@ -1,0 +1,50 @@
+@import "../../assets/scss/main";
+
+.song {
+  padding: 10px;
+  display: grid;
+  border-top: 1px solid #bbbbbb;
+  grid-template-rows: repeat(2, 30px);
+  grid-template-columns: 60px 195px 25px;
+  grid-template-areas: "img name heard" "img author share";
+
+  align-items: center;
+  font-weight: 200;
+
+  .song-img {
+    grid-area: img;
+    height: 100%;
+    width: 100%;
+    background-color: darken($color-bg-plain-hover, 30%);
+    position: relative;
+
+    .el-icon-loading {
+      margin: 20px 20px;
+    }
+  }
+
+  .name {
+    grid-area: name;
+    margin-left: 1em;
+    max-width: 8em;
+    @include text-overflow-hide;
+  }
+
+  .author {
+    grid-area: author;
+    margin-left: 1em;
+    color: $color-marginalized;
+
+    @include text-overflow-hide;
+  }
+
+  .heard {
+    grid-area: heard;
+    cursor: pointer;
+  }
+
+  .share {
+    cursor: pointer;
+    grid-area: share;
+  }
+}

@@ -1,14 +1,58 @@
+@import "../../assets/scss/main";
+
 .music {
-    // Vars
+  min-height: 100vh;
 
-    // Support
+  .top {
+    min-height: 70vh;
+    margin-bottom: 2em;
+    position: relative;
+    overflow: hidden;
+    @include clearfix;
 
-    // Module
-    & {
-        //
+    .music__img {
+      width: 48%;
+      float: left;
+      //border: 1px solid red;
     }
 
-    // Facets
+    .music__info {
+      width: 50%;
+      float: right;
+      //border: 1px solid red;
+    }
 
-    // States
+    .bc {
+      position: absolute;
+      top: -60%;
+      left: 0;
+      height: 220%;
+      width: 100%;
+      z-index: -1;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      filter: blur(30px) grayscale(80%);
+    }
+
+  }
+
+  .bottom {
+    display: grid;
+    grid-template-areas: "commend commend commend recommend";
+
+    .music__commend {
+      border: 1px solid red;
+      grid-area: commend;
+    }
+
+    .music__recommend {
+      border: 1px solid red;
+      grid-area: recommend;
+    }
+  }
+
+
+  //
+
 }

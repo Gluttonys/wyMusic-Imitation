@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <p class="title" v-if="!noTitle">{{title}}</p>
-    <p class="more" v-if="!noMore">更多></p>
+    <p class="more" v-if="!noMore" @click="handleMore">更多></p>
 
     <div class="split"></div>
     <div class="content" :style="{display: 'grid', gridTemplateColumns: `repeat(${grid}, 1fr)`, gridGap: `${gap}px`}">
@@ -37,6 +37,11 @@
       gap: {
         type: Number,
         default: 20
+      }
+    },
+    methods: {
+      handleMore() {
+        this.$emit("click", this.more)
       }
     }
   }

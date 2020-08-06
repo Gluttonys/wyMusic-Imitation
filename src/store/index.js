@@ -11,8 +11,6 @@ export default new Vuex.Store({
     uname: "",
     // 当前tabbar
     currentTab: "tuijian",
-    // tabBar 列表
-    tabBar: ["tuijian", "playlist", "diantai", "paihangbang", "songer", "zuixin"],
     // 记录当前路由列表
     routers: [],
     // 一个指向当前路由的索引值

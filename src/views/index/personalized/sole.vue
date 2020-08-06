@@ -5,7 +5,7 @@
 
       <div class="block-decorate" v-for="item of soleList" :key="item.id">
         <div class="video-icon"><span class="iconfont icon-shipin"></span></div>
-        <block :img-url="item.sPicUrl">{{item.name}}</block>
+        <block :img-url="item['sPicUrl']">{{item.name}}</block>
       </div>
 
     </classify-module>
@@ -56,7 +56,6 @@
       left: 5px;
       height: 25px;
       width: 25px;
-      /*padding: 0 0.5em;*/
       border-radius: 50%;
       line-height: 25px;
       text-align: center;
@@ -65,6 +64,7 @@
       background-color: rgba(0, 0, 0, 0.4);
       cursor: pointer;
       border: 1px solid grey;
+      z-index: 9999;
     }
 
   }

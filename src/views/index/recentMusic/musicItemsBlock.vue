@@ -9,15 +9,15 @@
           </div>
           <!-- 歌曲展示图片 -->
           <div class="pic">
-            <img :src="music.album.blurPicUrl" alt="">
+            <img :src="music.album['blurPicUrl']" alt="">
           </div>
           <!-- 歌曲名 -->
-          <div class="name">
+          <div class="name" @click="informGetMusic(music.id)">
             {{music.name}}
           </div>
           <!-- 歌手名 -->
           <div class="author">
-            {{music.artists[0].name}}
+            {{music['artists'][0].name}}
           </div>
           <!-- 专辑名称 -->
           <div class="copy-write">
@@ -38,9 +38,8 @@
 <script>
 
   import strip from "../../../components/public/strip"
-
+  import {informGetMusic} from "../../../globalBus/events"
   import {getRecentMusic} from "../../../netWork/index/requests"
-
   import {formatMillisecond} from "../../../tools/tools"
 
   export default {
@@ -65,12 +64,16 @@
         })
     },
     methods: {
-      formatMillisecond
+      formatMillisecond,
+      informGetMusic
     }
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+
+  @import "../../../assets/scss/main";
+
   .music-items-block {
     margin: 1em 3em;
     border: 1px solid #ededf0;
@@ -80,28 +83,27 @@
 
       .music-inner {
         display: grid;
-        grid-template-columns: 5% 5% 1fr 15% 25% 10%;
+        grid-template-columns: 5% 5% auto 15% 25% 10%;
         grid-gap: 15px;
-        /*line-height: 50px;*/
         align-items: center;
         padding: 0.3em 0;
+        font-weight: 100;
 
         .order {
           justify-self: center;
-          color: #9c9c9c;
+          color: $color-text-hover;
         }
 
         .pic {
           align-self: center;
 
           img {
-            /*height: 100%;*/
             width: 100%;
           }
         }
 
         .long {
-          color: #9c9c9c;
+          color: $color-text;
         }
       }
 

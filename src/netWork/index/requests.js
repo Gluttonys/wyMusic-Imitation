@@ -1,4 +1,6 @@
-import {request} from "../request"
+import {
+  request
+} from "../request"
 
 // ======================首页========================
 
@@ -10,7 +12,9 @@ function getRotation(options) {
    */
   return request({
     url: "/top/song",
-    params: {type: 0}
+    params: {
+      type: 0
+    }
   })
 }
 

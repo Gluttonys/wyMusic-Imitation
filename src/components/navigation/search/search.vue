@@ -25,7 +25,7 @@
 
         <div class="real-input-block">
           <input type="text" v-model="inputWords"
-                 :placeholder="defaultPlAceHolderObj.showKeyword"
+                 :placeholder="defaultPlAceHolderObj['showKeyword']"
                  @input="submit(inputWords)">
           <h4>热门搜索</h4>
           <div class="hot-search">
@@ -49,10 +49,10 @@
 
             <el-divider content-position="left">单曲</el-divider>
             <div class="songs-strip" v-if="searchResult">
-              <strip v-for="song of searchResult.song.songs">
+              <strip v-for="song of searchResult.song['songs']" :key="song.id">
                 <div class="strip-inner">
-                  <img :src="song.al.picUrl" alt="">
-                  <p class="song-name">{{song.name}}</p>
+                  <img :src="song['al']['picUrl']" alt="">
+                  <p class="song-name" @click="informGetMusic(song.id)">{{song.name}}</p>
                   <p class="author-name">{{song.ar[0].name}}</p>
                 </div>
               </strip>
@@ -63,7 +63,7 @@
               <strip v-for="album of searchResult.album.albums">
 
                 <div class="strip-inner">
-                  <img :src="album.blurPicUrl" alt="">
+                  <img :src="album['blurPicUrl']" alt="">
                   <p class="song-name">{{album.name}}</p>
                   <p class="author-name">{{album.artist.name}}</p>
                 </div>
@@ -83,14 +83,11 @@
 
   // 工具方法， 获取， 设置， 删除 指定 localStorage
   import {getLocalStorageObj, setHistoryForWY, delHistoryForXY} from "../../../tools/tools"
-
-  // 搜索的网路数据请求
   import {getHotSearch, getDefaultKeyWord, getResult} from "../../../netWork/navigationBar/requests"
-
-  // 搜索类型数据
+  import {informGetMusic} from "../../../globalBus/events"
+  import {inError} from "../../../tools/tools"
   import {searchType} from "../../../localData"
 
-  // 导入条形组件
   import strip from "../../../components/public/strip"
 
   export default {
@@ -123,37 +120,22 @@
       // 搜索框的提交事件
       submit(keyWord) {
         if (keyWord.trim()) {
-          getResult({
-            keywords: keyWord,
-            type: searchType.all
-          })
-            .then(data => {
-              this.searchResult = data.result
-            })
-            .catch(error => {
-              this.$message.error("获取搜索结果失败， 请打开控制台查看错误日志")
-              console.error(error)
-            })
+          getResult({keywords: keyWord, type: searchType.all})
+            .then(data => this.searchResult = data.result)
+            .catch(error => inError.call(this, "搜索结果", error))
         }
-      }
+      },
+      informGetMusic
     },
     mounted() {
+
       getHotSearch()
-        .then(data => {
-          this.hots = data.result.hots
-        })
-        .catch(error => {
-          this.$message.error("获取搜索热榜失败，请打开控制台查看报错信息")
-          console.error(error)
-        })
+        .then(data => this.hots = data.result.hots)
+        .catch(error => inError.call(this, "搜索热榜", error))
+
       getDefaultKeyWord()
-        .then(data => {
-          this.defaultPlAceHolderObj = data.data
-        })
-        .catch(error => {
-          this.$message.error("获取默认搜索内容失败， 请打开控制台查看错误日志")
-          console.error(error)
-        })
+        .then(data => this.defaultPlAceHolderObj = data.data)
+        .catch(error => inError.call(this, "默认搜索内容", error))
     },
   }
 </script>

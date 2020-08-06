@@ -1,9 +1,16 @@
 <template>
   <div class="rank-block">
     <div class="header">
-      <a href="#">
-        <img :src="songListInfo.coverImgUrl" alt="#">
-      </a>
+
+      <el-image :src="songListInfo['coverImgUrl']">
+        <div slot="placeholder" class="image-slot">
+          加载中<span class="dot">...</span>
+        </div>
+        <div slot="error" class="image-slot">
+          <i class="el-icon-picture-outline"></i>
+        </div>
+      </el-image>
+
     </div>
     <div class="body">
       <strip v-for="(song, index) of partOfSongList" :key="song.id">
@@ -14,7 +21,7 @@
           <div class="wave">
             {{parseInt(Math.random() * 100)}}%
           </div>
-          <div class="name">
+          <div class="name" @click="informGetMusic(song.id)">
             {{song.name}}
           </div>
           <div class="author">
@@ -22,19 +29,20 @@
           </div>
         </div>
       </strip>
-
     </div>
 
     <div class="footer">
-      <a :href="more">查看全部></a>
+      <router-link :to="more">查看全部></router-link>
     </div>
   </div>
 </template>
 
 <script>
 
-  import strip from '../../../components/public/strip'
+  import strip from "../../../components/public/strip"
 
+  import {informGetMusic} from "../../../globalBus/events"
+  import {inError} from "../../../tools/tools"
   import {getRankById} from "../../../netWork/index/requests"
 
   export default {
@@ -68,36 +76,39 @@
     created() {
       getRankById({id: this.id})
         .then(data => {
-          this.songListInfo = data.playlist || {}
-          this.songListIds = data.playlist.trackIds || []
-          this.songListTracks = data.playlist.tracks || []
-
+          this.songListInfo = data['playlist'] || {}
+          this.songListIds = data['playlist']['trackIds'] || []
+          this.songListTracks = data['playlist']['tracks'] || []
         })
-        .catch(error => {
-          this.$message.error("获取排行榜歌单失败， 请打开控制台查看信息")
-          console.error(error)
-        })
+        .catch(error => inError.call(this, "排行榜歌单", error))
     },
     computed: {
       partOfSongList() {
         return this.songListTracks.slice(0, 8)
       }
+    },
+    methods: {
+      informGetMusic
     }
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+
+  @import "../../../assets/scss/main";
+
   .rank-block {
     width: 100%;
 
     .header {
       height: 80px;
 
-      img {
-        height: 80px;
-        width: 100%;
+      &::v-deep .el-image {
+        .el-image__inner {
+          height: 80px;
+          width: 100%;
+        }
       }
-
     }
 
     .body {
@@ -113,8 +124,8 @@
         grid-gap: 5px;
 
         .top-three {
-          font-size: 15px!important;
-          color: #a60000!important;
+          font-size: 15px !important;
+          color: $color-main !important;
           font-weight: 600;
         }
 
@@ -126,29 +137,31 @@
         .wave,
         .author {
           font-size: 10px;
-          color: #909090;
+          color: $color-marginalized;
         }
 
         .name,
         .author {
-          white-space: pre;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          @include text-overflow-hide
+        }
+
+        .name {
+          font-weight: 100;
         }
 
       }
-
     }
 
     .footer {
       height: 30px;
+      background-color: $color-bg-plain-hover;
 
       a {
-        color: #7f7f7f;
+        color: $color-marginalized;
         text-decoration: none;
         font-size: 12px;
         float: right;
-    margin-right: 1rem;
+        margin-right: 1rem;
         line-height: 30px;
       }
 

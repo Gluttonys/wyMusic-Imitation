@@ -1,0 +1,31 @@
+@import '../../../assets/scss/main';
+
+.Info {
+  font-weight: 100;
+  padding: 0 1em;
+  color: $color-bg-plain;
+
+  .song__name {
+    h2 {
+      font-weight: 400;
+    }
+  }
+
+  .song__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .song__lyric {
+    // white-space: nowrap;
+    max-height: 55vh;
+    overflow: auto;
+
+    p {
+      cursor: pointer;
+    }
+
+  }
+
+
+}
