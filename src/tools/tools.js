@@ -3,11 +3,11 @@ function formatTime(second) {
    * second : Number : 事件秒数
    */
   second = parseInt(second)
-  let hour = (parseInt(second / 3600) + "").padStart(2, "0")
-  let minute = (parseInt((second - hour * 3600) / 60) + "").padStart(2, "0")
-  let sec = (second % 60 + "").padStart(2, "0")
+  let hour = (parseInt(second / 3600) + '').padStart(2, '0')
+  let minute = (parseInt((second - hour * 3600) / 60) + '').padStart(2, '0')
+  let sec = (second % 60 + '').padStart(2, '0')
 
-  if (hour !== "00") {
+  if (hour !== '00') {
     return `${hour}:${minute}:${sec}`
   } else {
     return `${minute}:${sec}`
@@ -36,33 +36,33 @@ function formatMillisecond(millisecond) {
    * 格式化毫秒数， 用来计算歌曲播放的时间
    */
   let second = millisecond / 1000
-  let min = parseInt(second / 60).toString().padStart(2, "0")
-  let sec = parseInt(second % 60).toString().padStart(2, "0")
+  let min = parseInt(second / 60).toString().padStart(2, '0')
+  let sec = parseInt(second % 60).toString().padStart(2, '0')
   return `${min}:${sec}`
 }
 
-function formatTimeStamp(num, fmt = "yyyy-MM-dd HH:mm:ss.S") {
+function formatTimeStamp(num, fmt = 'yyyy-MM-dd HH:mm:ss.S') {
   /**
    * num : 时间戳
    * fmt : 格式化模板
    */
   let date = new Date(num)
   let obj = {
-    "M+": date.getMonth() + 1, //月份
-    "d+": date.getDate(), //日
-    "H+": date.getHours(), //小时
-    "m+": date.getMinutes(), //分
-    "s+": date.getSeconds(), //秒
-    "q+": Math.floor((date.getMonth() + 3) / 3), //季度
-    "S": date.getMilliseconds() //毫秒
+    'M+': date.getMonth() + 1, //月份
+    'd+': date.getDate(), //日
+    'H+': date.getHours(), //小时
+    'm+': date.getMinutes(), //分
+    's+': date.getSeconds(), //秒
+    'q+': Math.floor((date.getMonth() + 3) / 3), //季度
+    'S': date.getMilliseconds() //毫秒
   }
   if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length))
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
   }
 
   Object.keys(obj).forEach(k => {
     if (new RegExp(`(${k})`).test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (obj[k]) : (("00" + obj[k]).substr(("" + obj[k]).length)))
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (obj[k]) : (('00' + obj[k]).substr(('' + obj[k]).length)))
     }
   })
 
@@ -74,7 +74,7 @@ function backToStamp(timeStr) {
     [01:23.448]
     将此类时间转换为时间戳 83 s
   */
- let result = 0
+  let result = 0
   timeStr.replace(/\[(\d{2}):(\d{2})\.\d{0,3}\]/, (_, $min, $sec) => {
     result = parseInt($min) * 60 + parseInt($sec)
   })
@@ -90,7 +90,7 @@ function getLocalStorageObj() {
   const result = {}
 
   for (let item of Object.keys(window.localStorage)) {
-    if (item.startsWith("wy-history")) {
+    if (item.startsWith('wy-history')) {
       result[item] = window.localStorage[item]
     }
   }
@@ -102,14 +102,14 @@ function setHistoryForWY(key, value) {
   /**
    * 给定指定的键值对， 这是 localStorage
    */
-  window.localStorage["wy-history" + key] = value
+  window.localStorage['wy-history' + key] = value
 }
 
 function delHistoryForXY(key) {
   /**
    * 删除指定 key 的 localStorage
    */
-  window.localStorage.removeItem("wy-history" + key)
+  window.localStorage.removeItem('wy-history' + key)
 }
 
 function inError(mes, error) {
@@ -117,6 +117,10 @@ function inError(mes, error) {
   console.error(error)
 }
 
+Array.prototype.random = function () {
+  let index = Math.floor(Math.random() * this.length + 1) - 1
+  return this[index]
+}
 
 Array.prototype.first = function () {
   // 返回数组中的第一个元素

@@ -14,18 +14,16 @@
                 :name="name">
         </info>
       </div>
-
       <div class="bc" :style="{backgroundImage:`url(${pic})`}"></div>
-
     </div>
 
     <div class="bottom">
       <div class="music__commend">
-        <commend></commend>
+        <commend :mid="mid"></commend>
       </div>
 
       <div class="music__recommend">
-        <recommend></recommend>
+        <recommend :mid="mid"></recommend>
       </div>
     </div>
 
@@ -40,8 +38,8 @@
   import Commend from "./Commend/Commend"
   import Recommend from "./Recommend/Recommend"
 
-  import {getInfoMusic} from "../../netWork/footerControl/requests"
-  import {inError} from "../../tools/tools"
+  import {getInfoMusic} from "@/netWork/footerControl/requests"
+  import {inError} from "@/tools/tools"
 
   export default {
     props: {},

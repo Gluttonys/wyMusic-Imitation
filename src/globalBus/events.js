@@ -32,16 +32,29 @@ function loadDataFromInfo({commandCount}) {
 }
 
 function informDumpToPoint(second) {
-  /*
+  /** 
     通知底下的控制条将音乐跳转到指定的时间点
     这个操作往往是通过单机歌词实现的
   */
   eventBus.$emit("dumpToPoint", second)
 }
 
+function informMusicSecond(second) {
+  eventBus.$emit("lyricChangeSecond", second)
+}
+
 function informRotate(state) {
   /* 通知音乐播放页面的图片的旋转状态 */
   eventBus.$emit("informRutate", state)
+}
+
+function loadStampTimeFromMusicInfo(timeArr) {
+  /*  
+    将正在播放的音乐的歌词时间列表发送至底部控制栏
+    timeArr: Array<number>
+    ps : [1, 3, 6, 45, 62, ...] 
+   */ 
+  eventBus.$emit("loadStampTimeFromMusicInfo", timeArr)
 }
 
 
@@ -52,5 +65,7 @@ export {
   informIds,
   loadDataFromInfo,
   informDumpToPoint,
-  informRotate
+  informRotate,
+  loadStampTimeFromMusicInfo,
+  informMusicSecond
 }

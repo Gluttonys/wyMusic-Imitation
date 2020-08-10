@@ -1,10 +1,10 @@
 <template>
   <nav>
     <!-- logo区域 -->
-    <div class="logo">
+    <router-link class="logo" tag="div" to="/">
       <span class="iconfont icon-yinlemusic214"></span>
       <span>谢尚柱音乐</span>
-    </div>
+    </router-link>
     <!-- 搜索框区域 -->
     <search></search>
 

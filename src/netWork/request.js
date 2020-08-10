@@ -5,7 +5,7 @@ function request(config) {
   // 创建实例
   let instance = axios.create({
     baseURL: "http://localhost:3000/",
-    timeout: 5000
+    // timeout: 5000
   })
 
   instance.interceptors.request.use(function (config) {

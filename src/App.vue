@@ -10,8 +10,8 @@
         </el-aside>
         <el-main>
           <transition>
-            <keep-alive :include="/index/" :exclude="/songList/">
-              <router-view></router-view>
+            <keep-alive :include="/index/">
+              <router-view :key="$route.fullPath"></router-view>
             </keep-alive>
           </transition>
         </el-main>

@@ -3,18 +3,18 @@ import {
 } from "../request"
 
 // ======================首页========================
-
-function getRotation(options) {
+function getRotations(type = 0) {
   /**
-   * 这里请求的是首页的轮播图数据
-   * 因为我也找不到接口了
-   * 所以使用了热门的接口， 默认值直接给了 0 表示全部热门
-   */
+   * 轮播图数据
+   * type:资源类型,对应以下类型,默认为 0 即PC
+       0: pc
+       1: android
+       2: iphone
+       3: ipad
+   * */
   return request({
-    url: "/top/song",
-    params: {
-      type: 0
-    }
+    url: "/banner",
+    params: {type}
   })
 }
 
@@ -184,7 +184,7 @@ function getRecentMusic(options) {
 
 export {
   // 首页
-  getRotation,
+  getRotations,
   getRecommendSongList,
   getSole,
   getLatesMusic,

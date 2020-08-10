@@ -73,21 +73,21 @@
   import block from "../../../components/public/block"
 
   // 用于组件间传值的 bus
-  import eventBus from "../../../globalBus/eventBus"
-  import {informGetMusic} from "../../../globalBus/events"
+  import eventBus from "@/globalBus/eventBus"
+  import {informGetMusic} from '@/globalBus/events'
 
   // 网络请求方法
   import {
     getMusic,
     getPlaylistCommand,
     getCollector
-  } from "../../../netWork/songList/requests"
+  } from "@/netWork/songList/requests"
 
   // 工具方法, 格式化一个毫秒时间
   import {
     formatMillisecond,
     inError
-  } from "../../../tools/tools"
+  } from "@/tools/tools"
 
   export default {
     props: {

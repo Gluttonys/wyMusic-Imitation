@@ -1,0 +1,101 @@
+@import "../../assets/scss/main";
+
+.footer {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 240px auto 200px 180px;
+
+  .control {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+
+    span {
+      display: inline-block;
+      background-color: $color-main;
+      border-radius: 50%;
+      line-height: 45px;
+      font-weight: 800;
+      color: #ffffff;
+      font-size: 21px;
+      padding: 0 0 0 13px;
+      width: 34px;
+      height: 45px;
+      cursor: pointer;
+    }
+  }
+
+  .progress-bar {
+    font-weight: 200;
+    place-self: center;
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+
+    .time {
+      justify-self: center;
+      align-self: center;
+    }
+
+    .el-slider {
+      width: 700px;
+    }
+  }
+
+  .aduio {
+    position: absolute;
+    top: -500px;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .volume {
+    place-self: center;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+
+    span {
+      justify-self: center;
+      align-self: center;
+      font-size: 22px;
+    }
+
+    .el-slider {
+      width: 150px;
+    }
+  }
+
+  .tools {
+    place-self: center end;
+    cursor: pointer;
+
+    .tool {
+      display: inline-block;
+      margin: 0 2em;
+
+      span {
+        font-size: 22px;
+      }
+    }
+  }
+
+  /* 修改进度条的默认样式 */
+  .el-slider {
+    ::v-deep .el-slider__runway {
+      .el-slider__bar {
+        background-color: $color-main;
+      }
+
+      .el-slider__button-wrapper {
+        .el-slider__button {
+          border: 2px solid $color-main;
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+  }
+}

@@ -30,7 +30,7 @@
 
 <script>
 
-  import {formatTimeStamp, formatBigNumber} from "../../../tools/tools"
+  import {formatTimeStamp, formatBigNumber} from "@/tools/tools"
 
   export default {
     props: {
